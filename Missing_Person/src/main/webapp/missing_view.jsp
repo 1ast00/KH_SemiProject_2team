@@ -45,5 +45,11 @@
 
     <a href="missing_insert.jsp">실종자 접수</a>
     <a href="목격자 제보 페이지 URL">제보하기(목격자 제보 URL 아직 연결 안함)</a>
+    
+    <!-- 실종자 목록 보기 버튼 추가(샘플데이터 20건 저장되어있음) -->
+    <form action="<%= request.getContextPath() %>/missing/list" method="get">
+    <button type="submit">실종자 목록 보기</button>
+	</form>
+    
 </body>
 </html>

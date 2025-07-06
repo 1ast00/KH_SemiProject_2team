@@ -3,7 +3,7 @@ package servlet;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
-import service.Pratice; // 오타는 있지만 기존 코드이므로 유지합니다.
+import service.Pratice;
 
 import java.io.IOException;
 

@@ -49,6 +49,7 @@ public class MissingPersonServlet extends HttpServlet {
         String ageAtMissing = " ";
         String currentAge = " ";
 
+        // ----------------- 이미지 파일 로직 -----------------------
         try {
             // 이미지 파일 처리
             Part missingImgPart = request.getPart("missingImg");
@@ -86,7 +87,8 @@ public class MissingPersonServlet extends HttpServlet {
                 }
             }
 
-            // 나이 계산 로직
+            
+            // ------------------ 나이 계산 로직 -------------------
             try {
             	
                 // 생년월일 (YYMMDD -> YYYYMMDD 형태로 변환하여 LocalDate로 파싱)
@@ -142,5 +144,7 @@ public class MissingPersonServlet extends HttpServlet {
             request.setAttribute("errorMessage", "실종자 정보 접수 중 오류가 발생했습니다: " + e.getMessage());
             request.getRequestDispatcher("/error.jsp").forward(request, response); // 오류 페이지로 이동
         }
+        
+        
     }
 }

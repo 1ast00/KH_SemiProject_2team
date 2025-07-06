@@ -52,7 +52,8 @@
           <input type="date" id="missingDate" name="missingDate" />
         </div>
         <button type="submit">접수</button>
-        <button type="button" onclick="history.back()">취소</button>
+        <button type="button" onclick="location.href='missing_insert.jsp'">취소</button>
+        
       </form>
 
       <hr>
