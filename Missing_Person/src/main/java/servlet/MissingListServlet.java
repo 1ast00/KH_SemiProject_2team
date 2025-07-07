@@ -21,7 +21,7 @@ public class MissingListServlet extends HttpServlet {
             // DB 연결
             Class.forName("oracle.jdbc.driver.OracleDriver");
             Connection conn = DriverManager.getConnection(
-                "jdbc:oracle:thin:@localhost:1521:xe", "C##HIPKIKOMORI", "123456" // DB 노트북에 연결되어있음(샘플데이터20
+                "jdbc:oracle:thin:@nam3324.synology.me:32800:XE", "c##dasibom22", "dasibom22" // DB 노트북에 연결되어있음(샘플데이터20
             );
 
             MissingPersonDAO dao = new MissingPersonDAO(conn);
