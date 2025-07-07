@@ -3,38 +3,64 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import dto.MemberDTO;
 import util.DBUtil;
 
 public class MemberDAO {
 
-    // 회원가입
-    public int insertMember(MemberDTO member) {
-        String sql = "INSERT INTO member_info (member_serialNum, member_id, member_pw, member_name, member_email, member_phone) VALUES (?, ?, ?, ?, ?, ?)";
+    // 회원 등록
+    public int registerMember(MemberDTO dto) {
+        int result = 0;
+        String sql = "INSERT INTO member_info "
+                   + "(member_serialNum, member_id, member_pw, member_name, member_email, member_phone, admin_serialNum) "
+                   + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1, member.getMember_serialNum());
-            pstmt.setString(2, member.getMember_id());
-            pstmt.setString(3, member.getMember_pw());
-            pstmt.setString(4, member.getMember_name());
-            pstmt.setString(5, member.getMember_email());
-            pstmt.setString(6, member.getMember_phone());
+            pstmt.setString(1, dto.getMember_serialNum());
+            pstmt.setString(2, dto.getMember_id());
+            pstmt.setString(3, dto.getMember_pw());
+            pstmt.setString(4, dto.getMember_name());
+            pstmt.setString(5, dto.getMember_email());
+            pstmt.setString(6, dto.getMember_phone());
+            pstmt.setString(7, dto.getAdmin_serialNum());
 
-            return pstmt.executeUpdate();
+            result = pstmt.executeUpdate();
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return 0;
+        return result;
+    }
+
+    // ID 중복 확인
+    public boolean isMemberIdDuplicate(String member_id) {
+        boolean isDuplicate = false;
+        String sql = "SELECT member_id FROM member_info WHERE member_id = ?";
+
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, member_id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    isDuplicate = true;
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return isDuplicate;
     }
 
     // 로그인
-    public MemberDTO login(String member_id, String member_pw) {
+    public MemberDTO loginMember(String member_id, String member_pw) {
+        MemberDTO dto = null;
         String sql = "SELECT * FROM member_info WHERE member_id = ? AND member_pw = ?";
 
         try (Connection conn = DBUtil.getConnection();
@@ -43,24 +69,25 @@ public class MemberDAO {
             pstmt.setString(1, member_id);
             pstmt.setString(2, member_pw);
 
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                return new MemberDTO(
-                    rs.getString("member_serialNum"),
-                    rs.getString("member_id"),
-                    rs.getString("member_pw"),
-                    rs.getString("member_name"),
-                    rs.getString("member_email"),
-                    rs.getString("member_phone"),
-                    null // admin_serialNum은 현재 테이블에 없음
-                );
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    dto = new MemberDTO(
+                        rs.getString("member_serialNum"),
+                        rs.getString("member_id"),
+                        rs.getString("member_pw"),
+                        rs.getString("member_name"),
+                        rs.getString("member_email"),
+                        rs.getString("member_phone"),
+                        rs.getString("admin_serialNum")
+                    );
+                }
             }
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return null; // 로그인 실패
+        return dto;
     }
 }
 

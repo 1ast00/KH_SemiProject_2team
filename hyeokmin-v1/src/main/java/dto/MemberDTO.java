@@ -1,18 +1,20 @@
 package dto;
 
 public class MemberDTO {
-    private String member_serialNum;
-    private String member_id;
-    private String member_pw;
-    private String member_name;
-    private String member_email;
-    private String member_phone;
-    private String admin_serialNum;
+    private String member_serialNum;   // 회원 고유번호
+    private String member_id;          // 아이디
+    private String member_pw;          // 비밀번호
+    private String member_name;        // 이름
+    private String member_email;       // 이메일 (nullable)
+    private String member_phone;       // 전화번호
+    private String admin_serialNum;    // 소속 관리자 번호
 
+    // 기본 생성자
     public MemberDTO() {}
 
-    public MemberDTO(String member_serialNum, String member_id, String member_pw, String member_name,
-                     String member_email, String member_phone, String admin_serialNum) {
+    // 전체 필드 초기화 생성자
+    public MemberDTO(String member_serialNum, String member_id, String member_pw,
+                     String member_name, String member_email, String member_phone, String admin_serialNum) {
         this.member_serialNum = member_serialNum;
         this.member_id = member_id;
         this.member_pw = member_pw;
@@ -22,6 +24,7 @@ public class MemberDTO {
         this.admin_serialNum = admin_serialNum;
     }
 
+    // Getter & Setter
     public String getMember_serialNum() {
         return member_serialNum;
     }

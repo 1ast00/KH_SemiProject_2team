@@ -100,17 +100,11 @@
     </div>
 
    
-    <form action="adminLogin" method="post">
-      <div class="form-group">
-        <label for="id">아이디 입력</label>
-        <input type="text" id="id" name="admin_id" placeholder="아이디 입력" required>
-      </div>
-      <div class="form-group">
-        <label for="pw">비밀번호 입력</label>
-        <input type="password" id="pw" name="admin_pw" placeholder="비밀번호 입력" required>
-      </div>
-      <button type="submit" class="submit-btn">로그인</button>
-    </form>
+     <form action="adminLogin" method="post">
+    <input type="text" name="admin_id" placeholder="아이디" required />
+    <input type="password" name="admin_pw" placeholder="비밀번호" required />
+    <input type="submit" value="로그인" />
+</form>
 
     
     <%

@@ -90,11 +90,10 @@
     <% } %>
 
     
-    <form action="memberLogin" method="post" class="login-box">
-      <input type="text" name="member_id" placeholder="아이디를 입력하세요" required>
-      <input type="password" name="member_pw" placeholder="비밀번호를 입력하세요" required>
-      <button type="submit" class="login-btn">로그인</button>
-      <button type="button" class="join-btn" onclick="location.href='member_register.jsp'">회원가입</button>
+    <form action="memberLogin" method="post">
+        <input type="text" name="member_id" placeholder="아이디" required />
+        <input type="password" name="member_pw" placeholder="비밀번호" required />
+        <input type="submit" value="로그인" />
     </form>
   </div>
 </body>

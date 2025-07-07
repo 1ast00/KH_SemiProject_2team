@@ -114,27 +114,15 @@
 
     
     <form action="adminRegister" method="post">
-      <div class="form-group check-wrap">
-        <input type="text" name="admin_id" placeholder="아이디를 입력하세요" required>
-        <button type="button" class="check-btn">중복 확인</button>
-      </div>
-      <div class="form-group">
-        <input type="password" name="admin_pw" placeholder="비밀번호를 입력하세요" required>
-      </div>
-      <div class="form-group">
-        <input type="password" name="admin_pw_check" placeholder="비밀번호를 다시 입력하세요" required>
-      </div>
-      <div class="form-group">
-        <input type="text" name="admin_name" placeholder="이름을 입력하세요" required>
-      </div>
-      <div class="form-group">
-        <input type="text" name="admin_phone" placeholder="전화번호를 입력하세요" required>
-      </div>
-      <div class="form-group">
-        <input type="email" name="admin_email" placeholder="이메일을 입력하세요" required>
-      </div>
-      <button type="submit" class="submit-btn">회원가입</button>
-    </form>
+    <input type="text" name="admin_serialNum" placeholder="관리자 고유번호" required />
+    <input type="text" name="admin_id" placeholder="아이디" required />
+    <input type="password" name="admin_pw" placeholder="비밀번호" required />
+    <input type="text" name="admin_name" placeholder="이름" required />
+    <input type="text" name="admin_phone" placeholder="전화번호" required />
+    <input type="email" name="admin_email" placeholder="이메일 (선택)" />
+    <input type="submit" value="회원가입" />
+</form>
+
 
     <script>
       // 비밀번호 일치 확인

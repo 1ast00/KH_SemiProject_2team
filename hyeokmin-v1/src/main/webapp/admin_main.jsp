@@ -1,9 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%
-    String admin_id = (String) session.getAttribute("admin_id");
+    // 세션에서 개별 값 꺼내기
     String admin_name = (String) session.getAttribute("admin_name");
+    String admin_id = (String) session.getAttribute("admin_id");
     String admin_serialNum = (String) session.getAttribute("admin_serialNum");
 
+    // 로그인 안 되어 있으면 로그인 페이지로 이동
     if (admin_id == null || admin_name == null) {
         response.sendRedirect("admin_login.jsp");
         return;
@@ -46,16 +48,16 @@
 </head>
 <body>
 
-  <h2><%= admin_name %> 관리자님, 다시 봄 관리자 페이지에 오신 것을 환영합니다 🌼</h2>
+<h2><%= admin_name %> 관리자님, 다시 봄 관리자 페이지에 오신 것을 환영합니다 🌸</h2>
 
-  <div class="info">
+<div class="info">
     <p><strong>관리자 ID:</strong> <%= admin_id %></p>
     <% if (admin_serialNum != null) { %>
-      <p><strong>관리자 고유번호:</strong> <%= admin_serialNum %></p>
+        <p><strong>관리자 고유번호:</strong> <%= admin_serialNum %></p>
     <% } %>
-  </div>
+</div>
 
-  <button class="logout-btn" onclick="location.href='logout.jsp'">로그아웃</button>
+<button class="logout-btn" onclick="location.href='logout.jsp'">로그아웃</button>
 
 </body>
 </html>
