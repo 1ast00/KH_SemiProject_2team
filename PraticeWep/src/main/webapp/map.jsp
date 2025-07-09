@@ -1,127 +1,173 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
-    <title>${place} 지도</title>
-    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1953e4a69f69ba521e119d6eca3efa47&libraries=services"></script>
-    <script>
-        window.onload = () => {
-            // JSP에서 서블릿이 전달한 위도/경도 값을 가져와서 숫자로 변환합니다.
-            const lat = parseFloat("${lat}");
-            const lng = parseFloat("${lng}");
+<title>${place}지도</title>
+<script
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=1953e4a69f69ba521e119d6eca3efa47&libraries=services"></script>
+<script>
+window.onload = () => {
+    const lat = parseFloat("${lat}");
+    const lng = parseFloat("${lng}");
+    const m_lat = parseFloat("${m_lat}");
+    const m_lng = parseFloat("${m_lng}");
 
-            // 지도를 표시할 div 요소를 가져옵니다.
-            const mapContainer = document.getElementById('map'); 
-            
-            // mapContainer가 존재하는지 확인하는 디버그 코드 추가
-            if (!mapContainer) {
-                console.error("Error: Map container div with ID 'map' not found!");
-                return; // div가 없으면 지도를 그릴 수 없으므로 함수 종료
-            }
+    // 유효한 좌표값이 있을 때만 지도 표시
+    if (!isNaN(lat) && !isNaN(lng)) {
+        const mapContainer = document.getElementById('map');
+        mapContainer.style.display = 'block'; // ← 지도 보이기
 
-            // 지도 옵션을 설정합니다. (중심 좌표, 확대 레벨)
-            const mapOption = {
-                center: new kakao.maps.LatLng(lat, lng),
-                level: 6 // 지도의 확대 레벨 (숫자가 작을수록 확대)
-            };
-
-            // 지도를 생성합니다.
-            const map = new kakao.maps.Map(mapContainer, mapOption);
-
-            // 원 (Circle) 오버레이를 생성하고 지도에 표시합니다.
-            const circle = new kakao.maps.Circle({
-                center: new kakao.maps.LatLng(lat, lng), // 중심 좌표
-                radius: 300, // 원의 반경 (m 단위)
-                strokeWeight: 3, // 선 두께
-                strokeColor: '#00aaff', // 선 색상
-                fillColor: '#aaffff', // 채우기 색상
-                fillOpacity: 0.5 // 채우기 불투명도
-            });
-            circle.setMap(map); // 지도에 원 표시
-
-            // 마커 (Marker) 오버레이를 생성하고 지도에 표시합니다.
-            const marker = new kakao.maps.Marker({
-                position: new kakao.maps.LatLng(lat, lng) // 마커의 위치
-            });
-            marker.setMap(map); // 지도에 마커 표시
+        const mapOption = {
+            center: new kakao.maps.LatLng(lat, lng),
+            level: 8
         };
+        const map = new kakao.maps.Map(mapContainer, mapOption);
+
+        // 제보 위치
+        const witnessCircle = new kakao.maps.Circle({
+            center: new kakao.maps.LatLng(lat, lng),
+            radius: 1000,
+            strokeWeight: 3,
+            strokeColor: '#00aaff',
+            fillColor: '#aaffff',
+            fillOpacity: 0.5
+        });
+        witnessCircle.setMap(map);
+
+        // 실종자 위치
+        if (!isNaN(m_lat) && !isNaN(m_lng)) {
+            const missingCircle = new kakao.maps.Circle({
+                center: new kakao.maps.LatLng(m_lat, m_lng),
+                radius: 1000,
+                strokeWeight: 3,
+                strokeColor: '#ff0000',
+                fillColor: '#ffaaaa',
+                fillOpacity: 0.5
+            });
+            missingCircle.setMap(map);
+        }
+    } else {
+        console.log("입력 값이 없어서 지도 비활성 상태입니다.");
+    }
+};
+
     </script>
 
-    <style>
-        /* 기본 여백 및 패딩 제거 */
-        * {
-            margin : 0;
-            padding : 0;
-            box-sizing: border-box; /* 패딩과 보더가 너비/높이에 포함되도록 설정 */
-        }
-        
-        body {
-            width : 80%; /* body 너비 조정 */
-            margin : 50px auto; /* 상하 50px, 좌우 중앙 정렬 */
-            border : 1px solid #eee; /* 테두리 색상 연하게 */
-            padding: 20px; /* body 내부에 여백 추가 */
-        }
-        
-        h2 {
-            margin-bottom: 20px;
-            color: #333;
-        }
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
 
-        p {
-            margin-bottom: 10px;
-            color: #555;
-        }
+body {
+	font-family: 'Arial', sans-serif;
+	width: 80%;
+	margin: 50px auto;
+	border: 1px solid #eee;
+	padding: 20px;
+	color: #333;
+}
 
-        form {
-            margin-top: 30px;
-            display: flex; /* 폼 요소들을 한 줄에 정렬 */
-            gap: 10px; /* 폼 요소들 사이 간격 */
-        }
+h2 {
+	font-size: 24px;
+	text-align: center;
+	margin-bottom: 30px;
+	font-weight: bold;
+	
+}
 
-        form input[type="text"] {
-            flex-grow: 1; /* 입력 필드가 가능한 공간을 채우도록 */
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
+.report-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 30px;
+	margin-bottom: 30px;
+}
 
-        form button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+.report-wrapper img {
+	width: 144px;
+	height: 212px;
+	border-radius: 8px;
+	object-fit: cover;
+}
 
-        form button:hover {
-            background-color: #0056b3;
-        }
+.report-info p {
+	font-size: 16px;
+	margin-bottom: 8px;
+	color: #444;
+}
 
-        /* 지도가 표시될 영역 */
-        #map {
-            width: 80%; /* body 대비 너비 조정 */
-            height: 500px; /* 지도 높이 고정 (중요!) */
-            margin : 50px auto 0; /* 위 50px, 좌우 중앙, 아래 0 */
-            border: 1px solid #ccc; /* 지도 테두리 */
-            border-radius: 8px; /* 모서리 둥글게 */
-            background-color: #f0f0f0; /* 로딩 중 배경색 */
-        }
-    </style>
+form {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	margin: 40px 0;
+}
+
+form input[type="text"] {
+	width: 300px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+form button {
+	padding: 10px 20px;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+form button:hover {
+	background-color: #0056b3;
+}
+
+#map {
+    display: none; 
+    width: 100%;
+    height: 500px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+}
+.witness-container {
+    text-align: left;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.profile-image {
+    display: block;
+    margin: 20px auto;
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+</style>
 
 </head>
 <body>
+	 <div class="witness-container">
+	<h2>목격자 제보</h2>
+	<div class="report-wrapper">
+    <img src="${pageContext.request.contextPath}/실종 아동.jpg" alt="아가">
+    <div class="report-info">
+        <p>목격 날짜 : 2024-10-08 · 14pm</p>
+        <p>목격 장소 : 오목교역 (근처)</p>
+        <p>추정 성별 : 남</p>
+        <p>추정 나이 : 5</p>
+        <p>기타</p>
+    </div>
+</div>
 
-<h2>목격자 제보</h2>
+	<form method="get" action="${pageContext.request.contextPath}/map">
+		<input type="text" name="keyword" placeholder="장소를 입력하세요" required>
+		<button type="submit">전송</button>
+	</form>
 
-<p>추정 나이 : 5세</p>
-<p>성별 : 남</p>
-<p>목격 장소 : 어디역 근처 </p>
-<p>목격 날짜 : 2024-10-08 </p>
-
-<form method="get" action="${pageContext.request.contextPath}/map">
-    <input type="text" name="keyword" placeholder="장소를 입력하세요" required>
-    <button type="submit">전송</button>
-</form>
-
-<div id="map"></div> </body>
+	<div id="map"></div>
+	 </div>
+</body>
 </html>
