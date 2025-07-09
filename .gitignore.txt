@@ -1,0 +1,21 @@
+# 이클립스 / 인텔리제이 관련 설정 파일 제외
+.classpath
+.project
+.settings/
+.idea/
+*.iml
+
+# 빌드 폴더 제외
+build/
+bin/
+target/
+
+# Oracle 관련 파일 제외
+*.sql
+*.dmp
+*.log
+*.ora
+
+# 시스템 파일 제외
+.DS_Store
+Thumbs.db
