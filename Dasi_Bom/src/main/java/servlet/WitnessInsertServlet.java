@@ -1,88 +1,42 @@
 package servlet;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.List;
-import java.util.UUID;
+import java.util.ArrayList; // 필요 없지만 일단 남겨둡니다.
+import java.util.List;     // 필요 없지만 일단 남겨둡니다.
+import java.util.UUID;     // 필요 없지만 일단 남겨둡니다.
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
-
-import org.apache.commons.fileupload.*;
-import org.apache.commons.fileupload.disk.*;
-import org.apache.commons.fileupload.servlet.*;
-import org.apache.tomcat.util.http.fileupload.FileItem;
-import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
-
-import dao.WitnessDAO;
-import dto.WitnessDTO;
+import dto.WitnessDTO; // 필요 없지만 일단 남겨둡니다.
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/witnessInsert.do")
+@MultipartConfig 
 public class WitnessInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	 private List<WitnessDTO> witnessList = new ArrayList<>();
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// 1. 파일 저장 경로 설정
-		String uploadPath = getServletContext().getRealPath("/upload");
-		File uploadDir = new File(uploadPath);
-		if (!uploadDir.exists()) uploadDir.mkdir();
+		request.setCharacterEncoding("UTF-8");
 
-		String date = null, place = null, gender = null, age = null, etc = null, imageFileName = null;
+		 String date = request.getParameter("date");
+		 String place = request.getParameter("place");
+		 String gender = request.getParameter("gender");
+		 String age = request.getParameter("age");
+		 String etc = request.getParameter("etc");
+		 String name = request.getParameter("name");
+		 String imageFileName = "default.jpg";
+		 String id = UUID.randomUUID().toString();
+		 WitnessDTO dto = new WitnessDTO(id, date, place, gender, age, etc, imageFileName);
+		 request.setAttribute("witnessList", witnessList); // 이 부분도 잠시 비활성화
 
-		// 2. multipart 요청인지 확인
-		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-		if (isMultipart) {
-			try {
-				DiskFileItemFactory factory = new DiskFileItemFactory();
-				ServletFileUpload upload = new ServletFileUpload(factory);
-				upload.setHeaderEncoding("UTF-8");
-
-				List<FileItem> items = upload.parseRequest(request);
-
-				for (FileItem item : items) {
-					if (item.isFormField()) {
-						String fieldName = item.getFieldName();
-						String value = item.getString("UTF-8");
-
-						switch (fieldName) {
-							case "date": date = value; break;
-							case "place": place = value; break;
-							case "gender": gender = value; break;
-							case "age": age = value; break;
-							case "etc": etc = value; break;
-						}
-					} else {
-						// 파일 업로드 처리
-						if (!item.getName().isEmpty()) {
-							String originalName = new File(item.getName()).getName();
-							String ext = originalName.substring(originalName.lastIndexOf("."));
-							String uuid = UUID.randomUUID().toString();
-							imageFileName = uuid + ext;
-
-							File uploadedFile = new File(uploadPath, imageFileName);
-							item.write(uploadedFile);
-						}
-					}
-				}
-
-				// 3. DTO 생성 및 DAO 저장
-				WitnessDTO dto = new WitnessDTO(date, place, gender, age, etc, imageFileName);
-				WitnessDAO dao = new WitnessDAO();
-				dao.insertWitness(dto);
-
-				// 4. 결과 이동
-				response.sendRedirect("witness_list.jsp");
-
-			} catch (Exception e) {
-				e.printStackTrace();
-				response.getWriter().println("업로드 오류 발생: " + e.getMessage());
-			}
-		}
+		// ⭐ witness_list.jsp로 바로 포워딩합니다. (데이터 없이)
+		request.getRequestDispatcher("witness_list.jsp").forward(request, response);
 	}
 }

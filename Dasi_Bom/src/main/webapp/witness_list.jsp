@@ -1,121 +1,113 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>목격자 제보</title>
+<title>목격자 제보 목록</title>
 <style>
     body {
-        background-color: #fafafa;
-        margin: 0;
-        padding: 0;
-    }
-
-    .report-container {
-        width: 500px;
-        margin: 50px auto;
-        background-color: #fff;
-        border: 2px solid #f7b9cf;
-        border-radius: 10px;
+        font-family: '맑은 고딕', sans-serif;
+        background-color: #fefefe;
         padding: 40px;
     }
 
     h2 {
+        color: #333;
+        margin-bottom: 20px;
         text-align: center;
-        color: #cc0066;
+    }
+
+    .search-box {
+        display: flex;
+        justify-content: center;
         margin-bottom: 30px;
     }
 
-    form {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    label {
-        font-weight: bold;
-        color: #444;
-        margin-bottom: 5px;
-    }
-
-    input[type="text"],
-    input[type="number"],
-    textarea {
-        padding: 10px;
+    .search-box input {
+        padding: 8px;
         border: 1px solid #ddd;
-        border-radius: 5px;
-        font-size: 15px;
-    }
-
-    input[type="file"] {
-        margin-top: 5px;
-    }
-
-    .btn-box {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-        gap: 10px;
-    }
-
-    .btn {
-        padding: 8px 20px;
         border-radius: 20px;
-        border: none;
+        width: 300px;
+        font-size: 14px;
+        padding-left: 15px;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .card {
+        background-color: #fff;
+        border: 1px solid #eee;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    .info {
+        font-size: 14px;
+        color: #444;
+        line-height: 1.6;
+    }
+
+    .info span {
         font-weight: bold;
-        cursor: pointer;
-        transition: 0.2s;
     }
-
-    .btn-submit {
-        background-color: #ff7cb3;
-        color: white;
+    
+    .submit {
+    	width : 80px;
+    	border-radius: 10px;
+    	background-color: pink;
+    	
     }
-
-    .btn-cancel {
-        background-color: #eee;
-        color: #333;
-    }
-
-    .btn:hover {
-        opacity: 0.9;
-    }
-
-    .file-note {
-        font-size: 12px;
-        color: #999;
-    }
+    
 </style>
 </head>
 <body>
 
-<div class="report-container">
-    <h2>목격 제보</h2>
-    <form action="witnessInsert.do" method="post" enctype="multipart/form-data">
-        <label>목격 날짜:</label>
-        <input type="text" name="date" placeholder="예: 2025-07-09" required>
+<h2>목격자 제보 목록</h2>
 
-        <label>목격 위치:</label>
-        <input type="text" name="place" placeholder="예: 서울 강남구 역삼동">
+<div class="search-box">
+    <input type="text" placeholder="이름, 나이, 성별, 위치, 기타로 검색">
+    <button class = "submit">전송</button>
+</div>
+<!-- 예시임 ㅎㅎ -->
+<div class="grid-container">
+	<div class = "card">
+		<img alt="아가" src="./실종 아동.jpg">
+		<p>이름 : 김지원</p>
+		<p>남자</p>
+		<p>나이 : 5</p>
+		<p>위치 : 오목교역</p>
+		<p>기타 : 청바지를 입고 뛰어다녓슴</p>
+		<p>이미지 파일 명 : 1234.jpg</p>
+	</div>
 
-        <label>추정 성별:</label>
-        <input type="text" name="gender" placeholder="예: 남성 / 여성">
-
-        <label>추정 나이:</label>
-        <input type="text" name="age" placeholder="예: 30대 초반">
-
-        <label>기타:</label>
-        <textarea name="etc" rows="3" placeholder="목격 당시 상황 등을 입력해주세요."></textarea>
-
-        <label>이미지 업로드:</label>
-        <input type="file" name="imageFile" accept="image/*">
-        <p class="file-note">※ 이미지 파일은 선택사항입니다.</p>
-
-        <div class="btn-box">
-            <button type="submit" class="btn btn-submit">등록</button>
-            <button type="reset" class="btn btn-cancel">취소</button>
+    <c:forEach var="dto" items="${witnessList}">
+        <div class="card">
+            <img src="upload/${dto.imageFileName}" alt="목격 이미지">
+            <div class="info">
+                <div><span>이름:</span> ${dto.name}</div>
+                <div><span>성별:</span> ${dto.gender}</div>
+                <div><span>나이:</span> ${dto.age}</div>
+                <div><span>위치:</span> ${dto.place}</div>
+                <div><span>기타:</span> ${dto.etc}</div>
+                <div><span>이미지 파일명:</span> ${dto.imageFileName}</div>
+            </div>
         </div>
-    </form>
+    </c:forEach>
+
 </div>
 
 </body>
