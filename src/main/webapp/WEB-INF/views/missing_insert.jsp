@@ -12,22 +12,20 @@
 	</header>
 	<main>
 		<form id="missingPersonForm"
-			action="MissingView.do"
-			method="post" enctype="multipart/form-data">
-			
-			<div class="form_group">
+			action="missingView.do"
+			method="post" enctype="multipart/form-data"> <div class="form_group">
 				<label for="missingName">이름:</label>
 				<input type="text" id="missingName" name="missingName"
 					   value="${param.missingName}" required />
 			</div>
 
 			<div class="form_group">
-				<label for="missingGender">성별:</label>
-				<select id="missingGender" name="missingGender" required>
-					<option value="">선택</option>
-					<option value="남" ${param.missingGender == '남' ? 'selected' : ''}>남</option>
-					<option value="여" ${param.missingGender == '여' ? 'selected' : ''}>여</option>
-				</select>
+    			<label for="missingGender">성별:</label>
+    			<select id="missingGender" name="missingGender" required>
+        		<option value="">선택</option>
+        		<option value="M" ${param.missingGender == 'M' ? 'selected' : ''}>남</option>
+        		<option value="F" ${param.missingGender == 'F' ? 'selected' : ''}>여</option>
+			    </select>
 			</div>
 
 			<div class="form_group">
@@ -38,7 +36,7 @@
 			<div class="form_group">
 				<label for="missingDate">실종 날짜:</label>
 				<input type="date" id="missingDate" name="missingDate"
-					   value="${param.missingDate}" />
+					   value="${param.missingDate}" required />
 			</div>
 
 			<div class="form_group">
@@ -64,7 +62,6 @@
 					   value="${param.place != null ? param.place : ''}" />
 				<button type="submit">위치 검색</button>
 			</div>
-			<!-- 사용자가 입력했던 값 유지하기위해 hidden(사용자에게 보이지 않음)타입으로 같이 넘김 -->
 			<input type="hidden" name="missingName" />
 			<input type="hidden" name="missingGender" />
 			<input type="hidden" name="missingBirth" />
@@ -91,14 +88,14 @@
 			const date = document.getElementById('missingDate').value;
 
 			// 2. 가져온 값들을 '위치 검색' 폼 안의 hidden 필드에 각각 넣기
-			const form = event.target; // this.form과 동일 (locationSearchForm)
+			const form = event.target; 
 			form.querySelector('input[name="missingName"]').value = name;
 			form.querySelector('input[name="missingGender"]').value = gender;
 			form.querySelector('input[name="missingBirth"]').value = birth;
 			form.querySelector('input[name="missingEtc"]').value = etc;
 			form.querySelector('input[name="missingDate"]').value = date;
 
-			// 3. 모든 값을 채운 후, 위치 검색 폼을 제출
+			// 3. 모든 값을 채운 후, 위치 검색 폼 제출
 			form.submit();
 		});
 

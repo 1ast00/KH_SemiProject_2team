@@ -24,4 +24,9 @@ public class MissingService {
 	public List<MissingPersonDTO> selectMissingList() {
 		return mapper.selectMissingList();
 	}
+	
+	// 데이터 삽입 요청을 Mapper에 전달하는 메서드
+	public int insertMissingPerson(MissingPersonDTO person) {
+		return mapper.insertMissingPerson(person);
+	}
 }

@@ -15,6 +15,33 @@
 		<result column="missing_date" property="missingDate" />
 		<result column="missing_img" property="image" />
 	</resultMap>
+
+	<insert id="insertMissingPerson" parameterType="dto.MissingPersonDTO">
+		INSERT INTO missing_info (
+			missing_serialNum,
+			member_serialNum,
+			admin_serialNum,
+			missing_name,
+			missing_gender,
+			missing_birth,
+			missing_etc,
+			missing_place,
+			missing_date,
+			missing_img
+		) VALUES (
+			SEQ_Missing_serialNum.NEXTVAL,
+			#{memberSerialNum},
+			#{adminSerialNum},
+			#{name},
+			#{gender},
+			TO_NUMBER(#{birth}),
+			#{etc},
+			#{place},
+			TO_DATE(#{missingDate}, 'YYYY-MM-DD'),
+			#{image}
+		)
+	</insert>
+
   <select id = "selectMissingList" resultMap="missing">
     select * from missing_info
   </select>

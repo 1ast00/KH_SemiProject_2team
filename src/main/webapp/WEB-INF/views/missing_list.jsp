@@ -3,8 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- missing_list로 바로 실행하면 안되고 missing_insert에서 접수 -> view에서 실종자목록 클릭 -->
-  <title>실종자 목록</title>
+<title>실종자 목록</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resource/css/missing_list.css">
 </head>
 <body>
@@ -35,7 +34,14 @@
           <td>${person.place}</td>
           <td>${person.etc}</td>
           <td>
-            <img src="${pageContext.request.contextPath }/resource/img/${missing_person_1 }" width="100" height="100" alt="이미지" />
+            <c:choose>
+                <c:when test="${not empty person.image}"> <!-- 수정 예정(이미지 저장경로, 이미지가 저장되는 폴더 생성하기 -->
+                    <img src="${person.image}" width="100" height="100" alt="${person.name} 이미지" />
+                </c:when>
+                <c:otherwise>
+                    이미지 없음
+                </c:otherwise>
+            </c:choose>
           </td>
         </tr>
       </c:forEach>

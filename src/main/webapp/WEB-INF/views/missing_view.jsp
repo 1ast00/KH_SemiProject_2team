@@ -7,7 +7,7 @@
 	href="${pageContext.request.contextPath }/resource/css/missing_view.css">
 </head>
 <body>
-	<h1>실종자</h1>
+	<h1>실종자</h1> <!-- JSTL + EL태그로 코드 변경예정!! -->
 
 	<%
 	// 서블릿에서 전달된 데이터 받기
@@ -76,7 +76,7 @@
 
 	<div class="button-group">
 		<a href="missingInsertView.do">실종자 접수</a> <a href="#">제보하기</a>
-		<form action="missingListView.do" method="get">
+		<form action="missingList.do" method="get">
 			<button type="submit">실종자 목록 보기</button>
 		</form>
 	</div>
