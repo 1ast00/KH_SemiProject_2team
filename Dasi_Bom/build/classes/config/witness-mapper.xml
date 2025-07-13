@@ -2,23 +2,21 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mappers>
-	<mapper class="mapper.WitnessMapper" />
-	
-	<select id="selectWitnessById" parameterType="String"
-		resultType="dto.WitnessDTO">
-		SELECT * FROM witness WHERE id = #{id}
-	</select>
-	<insert id="insertWitness" parameterType="dto.WitnessDTO">
-		INSERT INTO witness
-		(id, date, place, gender, age, etc, image)
-		VALUES (#{id}, #{date}, #{place}, #{gender}, #{age}, #{etc}, #{image})
-	</insert>
 
-	<select id="selectWitnessList" resultType="dto.WitnessDTO">
-		SELECT * FROM witness
-	</select>
+<mapper namespace="mapper.WitnessMapper">
+
+  <select id="selectWitnessById" parameterType="String" resultType="dto.WitnessDTO">
+    SELECT * FROM witness WHERE id = #{id}
+  </select>
+
+  <insert id="insertWitness" parameterType="dto.WitnessDTO">
+    INSERT INTO witness
+    (id, date, place, gender, age, etc, image)
+    VALUES (#{id}, #{date}, #{place}, #{gender}, #{age}, #{etc}, #{image})
+  </insert>
+
+  <select id="selectWitnessList" resultType="dto.WitnessDTO">
+    SELECT * FROM witness
+  </select>
 
 </mapper>
-
-
