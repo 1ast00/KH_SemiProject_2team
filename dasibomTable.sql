@@ -170,7 +170,7 @@ CREATE OR REPLACE TRIGGER TRG_MEMBER_SERIAL
 BEFORE INSERT ON member_info
 FOR EACH ROW
 BEGIN
-  :NEW.admin_serialNum := 'MM' || TO_CHAR(SEQ_MEMBER_serialNum.NEXTVAL);
+  :NEW.member_serialNum := 'MM' || TO_CHAR(SEQ_MEMBER_serialNum.NEXTVAL);
 END;
 /
 
@@ -179,7 +179,7 @@ CREATE OR REPLACE TRIGGER TRG_MISSING_SERIAL
 BEFORE INSERT ON missing_info
 FOR EACH ROW
 BEGIN
-  :NEW.admin_serialNum := 'MP' || TO_CHAR(SEQ_MISSING_serialNum.NEXTVAL);
+  :NEW.missing_serialNum := 'MP' || TO_CHAR(SEQ_MISSING_serialNum.NEXTVAL);
 END;
 /
 
@@ -188,7 +188,7 @@ CREATE OR REPLACE TRIGGER TRG_WITNESS_SERIAL
 BEFORE INSERT ON WITNESS_info
 FOR EACH ROW
 BEGIN
-  :NEW.admin_serialNum := 'WP' || TO_CHAR(SEQ_WITNESS_serialNum.NEXTVAL);
+  :NEW.witness_serialNum := 'WP' || TO_CHAR(SEQ_WITNESS_serialNum.NEXTVAL);
 END;
 /
 
@@ -199,3 +199,40 @@ drop TABLE missing_info CASCADE CONSTRAINTS;
 drop TABLE witness_info;
 drop TABLE notice;
 drop TABLE law;
+
+-- 시퀀스 삭제
+DROP SEQUENCE SEQ_ADMIN_serialNum;
+DROP SEQUENCE SEQ_MEMBER_serialNum;
+DROP SEQUENCE SEQ_MISSING_serialNum;
+DROP SEQUENCE SEQ_WITNESS_serialNum;
+DROP SEQUENCE SEQ_NOTICE_serialNum;
+DROP SEQUENCE SEQ_LAW_serialNum;
+
+-- 데이터 삭제
+DELETE FROM admin_info;
+DELETE FROM member_info;
+DELETE FROM missing_info;
+DELETE FROM witness_info;
+DELETE FROM notice;
+DELETE FROM law;
+
+-- 관리자 샘플
+INSERT INTO admin_info(admin_id, admin_pw, admin_name, admin_phone) VALUES ('admin', 'admin', 'admin','01012345678');
+INSERT INTO admin_info(admin_id, admin_pw, admin_name, admin_phone, admin_email) VALUES ('admin2', 'admin2', 'admin2','01056781234', 'dasi@bom');
+SELECT * FROM admin_info;
+
+-- 회원 샘플
+INSERT INTO member_info (member_id, admin_serialNum, member_pw, member_email, member_name, member_phone) 
+VALUES ('member', 'AA10000001', 'member', 'dasi@bom', '회원', '01012345678');
+INSERT INTO member_info (member_id, admin_serialNum, member_pw, member_name, member_phone) 
+VALUES ('member2', 'AA10000002', 'member2', '회원2', '01056781234');
+SELECT * FROM member_info;
+
+-- 실종 샘플
+INSERT INTO missing_info (member_serialNum, admin_serialNum, missing_name, missing_gender, missing_birth, missing_etc, missing_place, missing_date, missing_img) 
+VALUES ('MM10000001', 'AA10000001', '실종', 'F', 20100312, '보라색 원피스 착용, 핑크색 운동화, 왼쪽 무릎에 작은 흉터', '서울시 강남구 역삼동', DATE '2024-03-15', NULL);
+INSERT INTO missing_info (member_serialNum, admin_serialNum, missing_name, missing_gender, missing_birth, missing_etc, missing_place, missing_date, missing_img) 
+VALUES ('MM10000002', 'AA10000002', '실종2', 'M', 20051225, '파란색 후드티, 검은색 청바지, 안경 착용', '부산시 해운대구 해운대해수욕장', DATE '2024-03-20', NULL);
+SELECT * FROM missing_info;
+
+commit;
