@@ -41,7 +41,7 @@
 				<li class="has-dropdown"><a href="#">실종 정보</a>
 					<ul class="dropdown-menu">
 						<li><a href="${pageContext.request.contextPath}/missingInsertView.do">실종자 제보</a></li>
-						<li><a href="${pageContext.request.contextPath}/missingListView.do">실종자 목록 조회</a></li>
+						<li><a href="${pageContext.request.contextPath}/missingList.do">실종자 목록 조회</a></li>
 					</ul></li>
 				<li class="has-dropdown"><a href="#">목격 정보</a>
 					<ul class="dropdown-menu">

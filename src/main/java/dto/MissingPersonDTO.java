@@ -2,7 +2,7 @@ package dto;
 
 public class MissingPersonDTO {
 
-	private int id;
+	private String missingSerialNum;
 	private String name;
 	private String gender;
 	private String birth;
@@ -10,14 +10,18 @@ public class MissingPersonDTO {
 	private String place;
 	private String etc;
 	private String image;
+	
+	// 외래키
+	private String memberSerialNum;
+	private String adminSerialNum;
 
 	public MissingPersonDTO() {
 	}
 
-	public MissingPersonDTO(int id, String name, String gender, String birth, String missingDate, String place,
-			String etc, String image) {
-
-		this.id = id;
+	public MissingPersonDTO(String missingSerialNum, String name, String gender, String birth, String missingDate, String place,
+			String etc, String image, String memberSerialNum, String adminSerialNum) {
+		super();
+		this.missingSerialNum = missingSerialNum;
 		this.name = name;
 		this.gender = gender;
 		this.birth = birth;
@@ -25,14 +29,16 @@ public class MissingPersonDTO {
 		this.place = place;
 		this.etc = etc;
 		this.image = image;
+		this.memberSerialNum = memberSerialNum;
+		this.adminSerialNum = adminSerialNum;
 	}
 
-	public int getId() {
-		return id;
+	public String getMissingSerialNum() {
+		return missingSerialNum;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setMissingSerialNum(String missingSerialNum) {
+		this.missingSerialNum = missingSerialNum;
 	}
 
 	public String getName() {
@@ -90,4 +96,28 @@ public class MissingPersonDTO {
 	public void setImage(String image) {
 		this.image = image;
 	}
+
+	public String getMemberSerialNum() {
+		return memberSerialNum;
+	}
+
+	public void setMemberSerialNum(String memberSerialNum) {
+		this.memberSerialNum = memberSerialNum;
+	}
+
+	public String getAdminSerialNum() {
+		return adminSerialNum;
+	}
+
+	public void setAdminSerialNum(String adminSerialNum) {
+		this.adminSerialNum = adminSerialNum;
+	}
+
+	@Override
+	public String toString() {
+		return "MissingPersonDTO [missingSerialNum=" + missingSerialNum + ", name=" + name + ", gender=" + gender + ", birth=" + birth
+				+ ", missingDate=" + missingDate + ", place=" + place + ", etc=" + etc + ", image=" + image
+				+ ", memberSerialNum=" + memberSerialNum + ", adminSerialNum=" + adminSerialNum + "]";
+	}
+	
 }

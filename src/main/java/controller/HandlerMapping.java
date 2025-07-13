@@ -40,9 +40,6 @@ public class HandlerMapping {
 		case "missingView":
 			controller = new MissingViewController();
 			break;
-		case "missingListView":
-			controller = new MissingListViewController();
-			break;
 		case "missingList":
 			controller = new MissingListController();
 			break;
