@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+body {
+	margin: 0;
+	font-family: 'Noto Sans KR', sans-serif;
+	background-color: #fff;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 40px;
+}
+
+.logo {
+	text-align: center;
+}
+
+.logo img {
+	width: 60px;
+	height: 60px;
+}
+
+.logo h2 {
+	margin: 10px 0 0 0;
+	font-size: 24px;
+	color: #333;
+	line-height: 1.4;
+}
+
+.join-box {
+	margin-top: 30px;
+	background-color: #ffeaea;
+	padding: 40px 30px;
+	border-radius: 8px;
+	width: 400px;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.join-box input {
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	font-size: 14px;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.id-check-wrap {
+	display: flex;
+	gap: 10px;
+}
+
+.id-check-wrap input {
+	flex: 1;
+}
+
+.check-btn {
+	padding: 12px;
+	background-color: #2196f3;
+	color: #fff;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	white-space: nowrap;
+}
+
+.submit-btn {
+	padding: 12px;
+	background-color: #f99db5;
+	color: #fff;
+	border: none;
+	border-radius: 6px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.submit-btn:hover {
+	background-color: #f07fa1;
+}
