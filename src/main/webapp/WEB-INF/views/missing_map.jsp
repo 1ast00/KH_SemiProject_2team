@@ -9,12 +9,27 @@
 
 <h2>"${place}"의 위치 (1km 반경)</h2>
 
+<<<<<<< HEAD
 <!-- 지도 출력 영역 -->
 <div id="map" style="width:100%;height:500px;"></div>
 
 <!-- 위치선택 버튼 -->
 <form action="missingInsertView.do" method="get" style="margin-top:20px;">
     <input type="hidden" name="place" value="${place}" />
+=======
+<div id="map" style="width:100%;height:500px;"></div>
+
+<form action="missingInsertView.do" method="get" style="margin-top:20px;">
+
+	<!-- MissingMapSearchController에서 쏴준 값들로 다시 hidden타입으로 만들어서 missing_insert로 보내기 -> 입력값 유지됨 -->
+    <input type="hidden" name="place" value="${place}" />
+    <input type="hidden" name="missingName" value="${missingName}" />
+    <input type="hidden" name="missingGender" value="${missingGender}" />
+    <input type="hidden" name="missingBirth" value="${missingBirth}" />
+    <input type="hidden" name="missingEtc" value="${missingEtc}" />
+    <input type="hidden" name="missingDate" value="${missingDate}" />
+
+>>>>>>> 583fe526a5b73f5e3c272cc5058100d3a7083794
     <button type="submit">위치 선택</button>
 </form>
 

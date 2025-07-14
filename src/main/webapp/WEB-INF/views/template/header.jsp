@@ -41,8 +41,13 @@
                 <li class="has-dropdown">
                     <a href="#">실종 정보</a>
                     <ul class="dropdown-menu">
+<<<<<<< HEAD
                         <li><a href="/missing/report">실종자 제보</a></li>
                         <li><a href="/missing/search">실종자 목록 조회</a></li>
+=======
+                    <li><a href="${pageContext.request.contextPath}/missingInsertView.do">실종자 제보</a></li> <!-- 수정(실종자 접수 페이지로 연결) -->
+                    <li><a href="/missing/search">실종자 목록 조회</a></li>
+>>>>>>> 583fe526a5b73f5e3c272cc5058100d3a7083794
                     </ul>
                 </li>
                 <li class="has-dropdown">
