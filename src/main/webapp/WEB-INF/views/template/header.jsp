@@ -29,38 +29,43 @@
 </head>
 <body>
 	<header class="main-header">
-		<div class="logo">
-			<img src="./resource/img/logo.png" alt="다시, 봄 로고"> <a
-				href="/main.do" class="logo-text">
-				<h1>다시, 봄</h1>
-				<p>Dasi, Bom</p>
-			</a>
-		</div>
-		<nav class="main-nav">
-			<ul>
-				<li class="has-dropdown"><a href="#">실종 정보</a>
-					<ul class="dropdown-menu">
-						<li><a href="${pageContext.request.contextPath}/missingInsertView.do">실종자 제보</a></li>
-						<li><a href="${pageContext.request.contextPath}/missingList.do">실종자 목록 조회</a></li>
-					</ul></li>
-				<li class="has-dropdown"><a href="#">목격 정보</a>
-					<ul class="dropdown-menu">
-						<li><a href="${pageContext.request.contextPath}/witnessInsertView.do">목격자 제보</a></li>
-						<li><a href="${pageContext.request.contextPath}/witnessList.do">목격정보 목록 조회</a></li>
-					</ul></li>
-				<li class="has-dropdown"><a href="/notice">공지사항</a>
-					<ul class="dropdown-menu">
-						<li><a href="/notice">공지사항</a></li>
-						<li><a href="/legal-info">법률 정보</a></li>
-					</ul></li>
-				<li class="has-dropdown"><a href="/mypage">마이 페이지</a>
-					<ul class="dropdown-menu">
-						<li><a href="memnerRegisterView">회원가입</a></li>
-						<li><a href="memberLoginView.do">로그인</a></li>
-						<li><a href="/mypage">마이 페이지</a></li>
-					</ul></li>
-			</ul>
-		</nav>
-	</header>
+    <div class="logo">
+        <img src="${pageContext.request.contextPath}/resource/img/logo.png" alt="다시, 봄 로고">
+        <a href="${pageContext.request.contextPath}/main.do" class="logo-text">
+            <h1>다시, 봄</h1>
+            <p>Dasi, Bom</p>
+        </a>
+    </div>
+    <nav class="main-nav">
+        <ul>
+            <li class="has-dropdown"><a href="#">실종 정보</a>
+                <ul class="dropdown-menu">
+                    <li><a href="${pageContext.request.contextPath}/missingInsertView.do">실종자 제보</a></li>
+                    <li><a href="${pageContext.request.contextPath}/missingList.do">실종자 목록 조회</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown"><a href="#">목격 정보</a>
+                <ul class="dropdown-menu">
+                    <li><a href="${pageContext.request.contextPath}/witnessInsertView.do">목격자 제보</a></li>
+                    <li><a href="${pageContext.request.contextPath}/witnessList.do">목격정보 목록 조회</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown"><a href="${pageContext.request.contextPath}/noticeList.do">공지사항</a>
+                <ul class="dropdown-menu">
+                    <li><a href="${pageContext.request.contextPath}/noticeList.do">공지사항</a></li>
+                    <li><a href="${pageContext.request.contextPath}/lawList.do">법률 정보</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown"><a href="${pageContext.request.contextPath}/mypage.do">마이 페이지</a>
+                <ul class="dropdown-menu">
+                    <li><a href="${pageContext.request.contextPath}/memberRegisterView.do">회원가입</a></li>
+                    <li><a href="${pageContext.request.contextPath}/memberLoginView.do">로그인</a></li>
+                    <li><a href="${pageContext.request.contextPath}/mypage.do">마이 페이지</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</header>
+	
 </body>
 </html>

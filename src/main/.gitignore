@@ -1,0 +1,36 @@
+# Oracle 관련 파일 제외
+*.sql
+*.dmp
+*.ora
+*.log
+*.bak
+*.db
+*.mdb
+*.accdb
+
+# IDE 관련 파일 (Eclipse, IntelliJ 등)
+.classpath
+.project
+.settings/
+*.iml
+
+# 빌드 폴더 및 결과물
+/build/
+build/
+target/
+out/
+bin/
+*.class
+
+# 시스템 파일
+.DS_Store
+Thumbs.db
+
+# 라이브러리
+*.jar
+*.war
+*.ear
+
+# 기타 개인 설정 파일
+*.env
+*.local
