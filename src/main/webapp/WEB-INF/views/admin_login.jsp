@@ -29,14 +29,14 @@
       <button type="submit" class="submit-btn">로그인</button>
     </form>
 
-    <%-- 로그인 실패 시 오류 메시지 출력 --%>
-    <%
-      String error = request.getParameter("error");
-      if ("1".equals(error)) {
-    %>
-      <p style="color:red; margin-top:15px;">아이디 또는 비밀번호가 올바르지 않습니다.</p>
-    <% } %>
-
+	<!-- 로그인 실패 시 alert 출력 -->
+    <c:if test="${param.error eq '1'}">
+      <script>
+        window.onload = function () {
+          alert("아이디 또는 비밀번호가 올바르지 않습니다.");
+        };
+      </script>
+    </c:if>
   </div>
 
 </body>

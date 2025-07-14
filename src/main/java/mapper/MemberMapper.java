@@ -10,4 +10,5 @@ public interface MemberMapper {
 
 	MemberDTO memberLogin(Map<String, Object> map);
 
+	MemberDTO selectById(String memberId);
 }

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-<%@ page contentType="text/html;charset=UTF-8"%>
-=======
 <%@ page contentType="text/html;charset=UTF-8" %>
->>>>>>> 583fe526a5b73f5e3c272cc5058100d3a7083794
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,32 +14,6 @@
 		<form id="missingPersonForm"
 			action="MissingView.do"
 			method="post" enctype="multipart/form-data">
-<<<<<<< HEAD
-			<div class="form_group">
-				<label for="missingName">이름:</label> <input type="text"
-					id="missingName" name="missingName" required />
-			</div>
-			<div class="form_group">
-				<label for="missingGender">성별:</label> <select id="missingGender"
-					name="missingGender" required>
-					<option value="">선택</option>
-					<option value="남">남</option>
-					<option value="여">여</option>
-				</select>
-			</div>
-			<div class="form_group">
-				<label for="missingBirth">생년월일:</label> <input type="text"
-					id="missingBirth" name="missingBirth" placeholder="주민번호 앞자리 6자리 입력"
-					maxlength="6" required />
-			</div>
-			<div class="form_group">
-				<label for="missingEtc">기타 특징:</label>
-				<textarea id="missingEtc" name="missingEtc" rows="3"></textarea>
-			</div>
-			<div class="form_group">
-				<label for="missingImg">이미지 업로드:</label> <input type="file"
-					id="missingImg" name="missingImg" accept="image/*" />
-=======
 			
 			<div class="form_group">
 				<label for="missingName">이름:</label>
@@ -79,31 +49,16 @@
 			<div class="form_group">
 				<label for="missingImg">이미지 업로드:</label>
 				<input type="file" id="missingImg" name="missingImg" accept="image/*" />
->>>>>>> 583fe526a5b73f5e3c272cc5058100d3a7083794
 			</div>
 
 			<input type="hidden" id="missingPlaceText" name="missingPlace"
 				value="${param.place != null ? param.place : ''}" />
 
-<<<<<<< HEAD
-			<div class="form_group">
-				<label for="missingDate">실종 날짜:</label> <input type="date"
-					id="missingDate" name="missingDate" />
-			</div>
-=======
->>>>>>> 583fe526a5b73f5e3c272cc5058100d3a7083794
 		</form>
 
 		<form action="missingMapSearch.do"
 			method="get" id="locationSearchForm">
 			<div class="form_group">
-<<<<<<< HEAD
-				<label for="placeInput">실종 추정 위치:</label> <input type="text"
-					id="placeInput" name="place" required
-					value="${param.place != null ? param.place : ''}" />
-				<button type="submit">위치 검색</button>
-			</div>
-=======
 				<label for="placeInput">실종 추정 위치:</label>
 				<input type="text" id="placeInput" name="place" required
 					   value="${param.place != null ? param.place : ''}" />
@@ -115,7 +70,6 @@
 			<input type="hidden" name="missingBirth" />
 			<input type="hidden" name="missingEtc" />
 			<input type="hidden" name="missingDate" />
->>>>>>> 583fe526a5b73f5e3c272cc5058100d3a7083794
 		</form>
 
 		<div class="button-group">
@@ -123,19 +77,6 @@
 			<button type="button" onclick="location.href='missingInsertView.do'"
 				class="cancel-button">취소</button>
 		</div>
-<<<<<<< HEAD
-
-	</main>
-
-	<script>
-		// 실종자 위치 정보 값을 txt로 넘겨버리기
-		document.addEventListener('DOMContentLoaded', function() {
-			const missingPersonForm = document.getElementById('missingPersonForm');
-			missingPersonForm.addEventListener('submit', function(event) {
-				const placeInputValue = document.getElementById('placeInput').value;
-				document.getElementById('missingPlaceText').value = placeInputValue;
-				});
-=======
 	</main>
 
 	<script>
@@ -165,7 +106,6 @@
 		document.getElementById('missingPersonForm').addEventListener('submit', function(event) {
 			const placeInputValue = document.getElementById('placeInput').value;
 			document.getElementById('missingPlaceText').value = placeInputValue;
->>>>>>> 583fe526a5b73f5e3c272cc5058100d3a7083794
 		});
 	</script>
 </body>

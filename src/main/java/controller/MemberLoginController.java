@@ -15,7 +15,6 @@ public class MemberLoginController implements Controller {
 
 	@Override
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		ModelAndView view = null;
 		
 		String member_id = request.getParameter("member_id");
         String member_pw = request.getParameter("member_pw");
@@ -35,13 +34,11 @@ public class MemberLoginController implements Controller {
         	response.getWriter().println("history.back();");
         	response.getWriter().println("</script>");
         	// view = new ModelAndView("/adminloginView.do", true);
+        	return null;
         } else { 
-        	view = new ModelAndView("/adminMain.do", true);
-        	
-        	// 로그인 정보 session 저장
         	HttpSession session = request.getSession();
-			session.setAttribute("user", member);
+            session.setAttribute("user", member);
+            return new ModelAndView("/main.do", true);
         }
-		return view;
 	}
 }

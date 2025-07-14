@@ -28,13 +28,20 @@ public class AdminLoginController implements Controller {
         
         // 관리자 정보가 없다면
         if(admin == null) {
-        	view = new ModelAndView("/adminloginView.do", true);
+        	// 로그인 실패 시 경고창 + 뒤로가기
+            response.setContentType("text/html;charset=UTF-8");
+            response.getWriter().println("<script>");
+            response.getWriter().println("alert('아이디 또는 비밀번호가 틀렸습니다.');");
+            response.getWriter().println("history.back();");
+            response.getWriter().println("</script>");
+            return null;
         } else {
-        	view = new ModelAndView("/adminMain.do", true);
-        	
-        	// 로그인 정보 session 저장
-        	HttpSession session = request.getSession();
-			session.setAttribute("user", admin);
+        	// 로그인 성공
+            HttpSession session = request.getSession();
+            session.setAttribute("user", admin);
+
+            // 관리자 메인화면으로 리다이렉트
+            view = new ModelAndView("/adminMain.do", true);
         }
 		return view;
 	}

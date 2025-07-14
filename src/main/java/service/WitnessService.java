@@ -1,6 +1,9 @@
 package service;
 
+import java.util.List;
+
 import config.DBManager;
+import dto.WitnessDTO;
 import mapper.WitnessMapper;
 
 public class WitnessService { 
@@ -15,6 +18,18 @@ public class WitnessService {
 		if(instance == null)
 			instance = new WitnessService();
 		return instance;
+	}
+	
+	public List<WitnessDTO> selectWitnessList() {
+		return mapper.selectWitnessList();
+	}
+	
+	public boolean insertWitness(WitnessDTO dto) {
+	    return mapper.insertWitness(dto) > 0;
+	}
+
+	public WitnessDTO selectWitnessById(String id) {
+		 return mapper.selectWitnessById(id);
 	}
 
 }

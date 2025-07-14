@@ -6,10 +6,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import view.ModelAndView;
 
-public class MissingListViewController implements Controller {
+public class WitnessInsertViewController implements Controller {
 
 	@Override
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		return new ModelAndView("missing_list.jsp", false);
+		return new ModelAndView("witness_insert.jsp", false);
 	}
 }

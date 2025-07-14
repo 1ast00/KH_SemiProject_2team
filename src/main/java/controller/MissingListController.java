@@ -16,6 +16,7 @@ public class MissingListController implements Controller {
 		List<MissingPersonDTO> list = MissingService.getInstance().selectMissingList();
 		
 		request.setAttribute("missingList", list);
+		System.out.println(list.size());
 		
 		return new ModelAndView("missing_list.jsp", false);
 	}

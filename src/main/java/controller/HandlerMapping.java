@@ -25,6 +25,12 @@ public class HandlerMapping {
 		case "memberLogin":
 			controller = new MemberLoginController();
 			break;
+		case "memberRegisterView":
+			controller = new MemberRegisterViewController();
+			break;
+		case "memberRegister":
+			controller = new MemberRegisterController();
+			break;
 		case "adminMain":
 			controller = new AdminMainController();
 			break;
@@ -34,14 +40,17 @@ public class HandlerMapping {
 		case "adminLogin":
 			controller = new AdminLoginController();
 			break;
+		case "adminRegister":
+			controller = new AdminRegisterController();
+			break;
+		case "adminRegisterView":
+			controller = new AdminRegisterViewController();
+			break;
 		case "missingInsertView":
 			controller = new MissingInsertViewController();
 			break;
-		case "MissingView":
+		case "missingView":
 			controller = new MissingViewController();
-			break;
-		case "missingListView":
-			controller = new MissingListViewController();
 			break;
 		case "missingList":
 			controller = new MissingListController();
@@ -51,6 +60,18 @@ public class HandlerMapping {
 			break;
 		case "witnessMapSearch":
 			controller = new WitnessMapSearchController();
+			break;
+		case "witnessInsertView":
+			controller = new WitnessInsertViewController();
+			break;	
+		case "witnessInsert":
+			controller = new WitnessInsertController();
+			break;
+		case "witnessList":
+			controller = new WitnessListController();
+			break;
+		case "witnessView":
+			controller = new WitnessViewController();
 			break;
 		}
 		return controller;
