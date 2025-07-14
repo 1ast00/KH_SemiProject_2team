@@ -1,10 +1,6 @@
 -- 관리자 정보 테이블
 CREATE TABLE admin_info (
-<<<<<<< HEAD
     admin_serialNum    CHAR(10)        NOT NULL,    -- 관리자 고유 번호
-=======
-    admin_serialNum    CHAR(5)        NOT NULL,    -- 관리자 고유 번호
->>>>>>> 583fe526a5b73f5e3c272cc5058100d3a7083794
     admin_id           CHAR(128)      NOT NULL,    -- 관리자 로그인 ID
     admin_pw           CHAR(128)      NOT NULL,    -- 관리자 비밀번호
     admin_name         CHAR(128)      NOT NULL,    -- 관리자 이름
@@ -18,7 +14,6 @@ ALTER TABLE admin_info ADD CONSTRAINT UK_admin_info_id UNIQUE (admin_id);
 
 -- 회원 정보 테이블
 CREATE TABLE member_info (
-<<<<<<< HEAD
     member_serialNum   CHAR(10)      NOT NULL,    -- 회원 고유 번호
     member_id          CHAR(128)   NOT NULL,    -- 회원 로그인 ID
     admin_serialNum    CHAR(10)        NOT NULL,    -- 소속 관리자 번호
@@ -26,15 +21,6 @@ CREATE TABLE member_info (
     member_email       CHAR(128)   NULL,        -- 이메일
     member_name        CHAR(128)   NOT NULL,    -- 이름
     member_phone       CHAR(128)         NOT NULL     -- 전화번호
-=======
-    member_serialNum   CHAR(100)      NOT NULL,    -- 회원 고유 번호
-    member_id          VARCHAR2(50)   NOT NULL,    -- 회원 로그인 ID
-    admin_serialNum    CHAR(5)        NOT NULL,    -- 소속 관리자 번호
-    member_pw          VARCHAR2(50)   NOT NULL,    -- 회원 비밀번호
-    member_email       VARCHAR2(50)   NULL,        -- 이메일
-    member_name        VARCHAR2(10)   NOT NULL,    -- 이름
-    member_phone       NUMBER         NOT NULL     -- 전화번호
->>>>>>> 583fe526a5b73f5e3c272cc5058100d3a7083794
 );
 
 -- 회원 기본키 및 유니크 제약
@@ -48,11 +34,7 @@ REFERENCES admin_info (admin_serialNum);
 -- 공지사항 테이블
 CREATE TABLE notice (
     num                NUMBER          NOT NULL,    -- 공지사항 고유 번호
-<<<<<<< HEAD
     admin_serialNum    CHAR(10)         NOT NULL,    -- 작성 관리자 번호
-=======
-    admin_serialNum    CHAR(5)         NOT NULL,    -- 작성 관리자 번호
->>>>>>> 583fe526a5b73f5e3c272cc5058100d3a7083794
     title              VARCHAR2(50)    NOT NULL,    -- 제목
     content            CLOB            NOT NULL,    -- 본문 내용
     views              NUMBER DEFAULT 0 NOT NULL,   -- 조회수
@@ -67,7 +49,6 @@ ALTER TABLE notice ADD CONSTRAINT PK_notice PRIMARY KEY (num);
 ALTER TABLE notice ADD CONSTRAINT FK_admin_to_notice FOREIGN KEY (admin_serialNum)
 REFERENCES admin_info (admin_serialNum);
 
-<<<<<<< HEAD
 -- 법률 테이블
 CREATE TABLE law (
     num                NUMBER          NOT NULL,    -- 법률 고유 번호
@@ -87,24 +68,13 @@ CREATE TABLE missing_info (
     missing_serialNum  CHAR(10)       NOT NULL,    -- 실종자 고유 번호
     member_serialNum   CHAR(10)       NOT NULL,    -- 작성 회원 번호
     admin_serialNum    CHAR(10)         NOT NULL,    -- 관리자 번호
-=======
--- 실종자 정보 테이블
-CREATE TABLE missing_info (
-    missing_serialNum  CHAR(128)       NOT NULL,    -- 실종자 고유 번호
-    member_serialNum   CHAR(100)       NOT NULL,    -- 작성 회원 번호
-    admin_serialNum    CHAR(5)         NOT NULL,    -- 관리자 번호
->>>>>>> 583fe526a5b73f5e3c272cc5058100d3a7083794
     missing_name       VARCHAR2(10)    NOT NULL,    -- 실종자 이름
     missing_gender     CHAR(1)         NOT NULL,    -- 성별
     missing_birth      NUMBER          NOT NULL,    -- 생년월일
     missing_etc        VARCHAR2(200)   NULL,        -- 기타 정보
     missing_place      VARCHAR2(100)   NULL,        -- 실종 위치
     missing_date       DATE            NOT NULL,    -- 실종 날짜
-<<<<<<< HEAD
     missing_img        VARCHAR2(100)            NULL         -- 이미지
-=======
-    missing_img        BLOB            NULL         -- 이미지
->>>>>>> 583fe526a5b73f5e3c272cc5058100d3a7083794
 );
 
 -- 실종자 기본키
@@ -120,27 +90,16 @@ REFERENCES admin_info (admin_serialNum);
 
 -- 목격자 정보 테이블
 CREATE TABLE witness_info (
-<<<<<<< HEAD
     witness_serialNum  CHAR(10)       NOT NULL PRIMARY KEY, -- 목격자 고유 번호
     member_serialNum   CHAR(10)       NOT NULL,    -- 작성 회원
     admin_serialNum    CHAR(10)         NOT NULL,    -- 관리자 번호
-=======
-    witness_serialNum  CHAR(128)       NOT NULL PRIMARY KEY, -- 목격자 고유 번호
-    member_serialNum   CHAR(100)       NOT NULL,    -- 작성 회원
-    admin_serialNum    CHAR(5)         NOT NULL,    -- 관리자 번호
->>>>>>> 583fe526a5b73f5e3c272cc5058100d3a7083794
     witness_date       DATE            NOT NULL,    -- 목격 날짜
     witness_place      VARCHAR2(100)   NOT NULL,    -- 목격 장소
     witness_gender     CHAR(1)         NOT NULL,    -- 추정 성별
     witness_age        NUMBER          NULL,        -- 추정 나이
     witness_etc        VARCHAR2(200)   NULL,        -- 기타 설명
-<<<<<<< HEAD
     witness_img        VARCHAR2(100)           NULL,        -- 이미지
     missing_serialNum  CHAR(10)       NULL         -- 연관된 실종자 번호 (nullable)
-=======
-    witness_img        BLOB            NULL,        -- 이미지
-    missing_serialNum  CHAR(128)       NULL         -- 연관된 실종자 번호 (nullable)
->>>>>>> 583fe526a5b73f5e3c272cc5058100d3a7083794
 );
 
 -- 회원 -> 목격자 외래키
@@ -153,7 +112,6 @@ REFERENCES admin_info (admin_serialNum);
 
 -- 실종자 -> 목격자 외래키
 ALTER TABLE witness_info ADD CONSTRAINT FK_missing_to_witness FOREIGN KEY (missing_serialNum)
-<<<<<<< HEAD
 REFERENCES missing_info (missing_serialNum);
 
 -- 관리자 시퀀스 생성
@@ -286,6 +244,3 @@ SELECT * FROM witness_info;
 
 
 commit;
-=======
-REFERENCES missing_info (missing_serialNum);
->>>>>>> 583fe526a5b73f5e3c272cc5058100d3a7083794
