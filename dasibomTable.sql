@@ -92,7 +92,7 @@ REFERENCES admin_info (admin_serialNum);
 CREATE TABLE witness_info (
     witness_serialNum  CHAR(10)       NOT NULL PRIMARY KEY, -- 목격자 고유 번호
     member_serialNum   CHAR(10)       NOT NULL,    -- 작성 회원
-    admin_serialNum    CHAR(5)         NOT NULL,    -- 관리자 번호
+    admin_serialNum    CHAR(10)         NOT NULL,    -- 관리자 번호
     witness_date       DATE            NOT NULL,    -- 목격 날짜
     witness_place      VARCHAR2(100)   NOT NULL,    -- 목격 장소
     witness_gender     CHAR(1)         NOT NULL,    -- 추정 성별
@@ -234,5 +234,13 @@ VALUES ('MM10000001', 'AA10000001', '실종', 'F', 20100312, '보라색 원피�
 INSERT INTO missing_info (member_serialNum, admin_serialNum, missing_name, missing_gender, missing_birth, missing_etc, missing_place, missing_date, missing_img) 
 VALUES ('MM10000002', 'AA10000002', '실종2', 'M', 20051225, '파란색 후드티, 검은색 청바지, 안경 착용', '부산시 해운대구 해운대해수욕장', DATE '2024-03-20', NULL);
 SELECT * FROM missing_info;
+
+-- 목격 샘플
+INSERT INTO witness_info (member_serialNum, admin_serialNum, witness_date, witness_place, witness_gender, witness_age, witness_etc, missing_serialNum)
+VALUES ('MM10000001', 'AA10000001', DATE '2025-07-14', 'KH정보교육원 당산점', 'F', '20', '키가 160대 후반', 'MP10000004');
+INSERT INTO witness_info (member_serialNum, admin_serialNum, witness_date, witness_place, witness_gender, witness_age, witness_etc)
+VALUES ('MM10000002', 'AA10000002', DATE '2025-07-15', 'KH정보교육원 당산점1', 'F', '21', '키가 170대 후반');
+SELECT * FROM witness_info; 
+
 
 commit;
