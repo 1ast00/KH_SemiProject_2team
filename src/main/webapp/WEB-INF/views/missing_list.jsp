@@ -35,7 +35,7 @@
           <td>${person.place}</td>
           <td>${person.etc}</td>
           <td>
-            <img src="${pageContext.request.contextPath }/resource/img/${missing_person_1 }" width="100" height="100" alt="이미지" />
+            <img src="/resource/img/${person.image }" width="100" height="100" alt="이미지" />
           </td>
         </tr>
       </c:forEach>

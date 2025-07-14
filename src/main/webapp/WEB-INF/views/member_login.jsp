@@ -19,7 +19,7 @@
       <div class="error-msg">아이디 또는 비밀번호가 올바르지 않습니다.</div>
     <% } %>
 
-    <form action="memberLogin.do" method="post">
+    <form action="memberLogin" method="post">
         <input type="text" name="member_id" placeholder="아이디" required />
         <input type="password" name="member_pw" placeholder="비밀번호" required />
         <input type="submit" value="로그인" />

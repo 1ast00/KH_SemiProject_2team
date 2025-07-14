@@ -37,8 +37,11 @@ public class HandlerMapping {
 		case "missingInsertView":
 			controller = new MissingInsertViewController();
 			break;
-		case "missingView":
+		case "MissingView":
 			controller = new MissingViewController();
+			break;
+		case "missingListView":
+			controller = new MissingListViewController();
 			break;
 		case "missingList":
 			controller = new MissingListController();

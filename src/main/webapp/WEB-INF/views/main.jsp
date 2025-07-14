@@ -8,11 +8,12 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resource/css/main.css">
 </head>
 <body>
+<body>
 	<jsp:include page="./template/header.jsp"></jsp:include>
     <section class="search-section">
         <div class="search-input-container">
             <input type="text" id="mainSearchInput" placeholder="이름/나이/성별/기타정보 검색">
-            <button id="searchButton"><img src="${pageContext.request.contextPath }/resource/img/search_icon.png" alt="검색"></button>
+            <button id="searchButton"><img src="search_icon.png" alt="검색"></button>
             
             <div id="detailedSearchInputs" class="hidden-search-details">
                 <input type="text" id="searchName" placeholder="이름">

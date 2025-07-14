@@ -4,5 +4,13 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="mapper.AdminMapper">
-
+	<insert id="insertAdmin">
+		INSERT INTO admin_info(admin_serialNum, admin_id, admin_pw, admin_name, admin_phone, admin_email)
+		VALUES (standard_hash(#{admin_serialNum},'SHA512'), 
+		standard_hash(#{admin_id},'SHA512'), 
+		standard_hash(#{admin_pw},'SHA512'), 
+		standard_hash(#{admin_name},'SHA512'), 
+		standard_hash(#{admin_phone},'SHA512'), 
+		standard_hash(#{admin_email},'SHA512'))
+	</insert>
 </mapper>

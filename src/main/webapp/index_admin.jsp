@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 메인화면으로 이동</title>
+<title>회원 메인화면으로 이동</title>
 </head>
 <body>
 	<script>
