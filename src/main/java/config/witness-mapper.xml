@@ -6,7 +6,6 @@
 	<resultMap type="dto.WitnessDTO" id="witness">
 		<id column="witness_serialNum" property="witnessSerialNum" />
 		<result column="member_serialNum" property="memberSerialNum" />
-		<result column="admin_serialNum" property="adminSerialNum" />
 		<result column="witness_gender" property="gender" />
 		<result column="witness_age" property="age" />
 		<result column="witness_etc" property="etc" />
@@ -19,15 +18,20 @@
 		resultMap="witness"> SELECT * FROM witness_info WHERE witness_serialNum =
 		#{witnessSerialNum, jdbcType=CHAR}
 	</select>
-	<insert id="insertWitness" parameterType="dto.WitnessDTO"> INSERT INTO
-		witness_info ( witness_date, witness_place, witness_gender,
-		witness_age, witness_etc, witness_img, member_serialNum,
-		admin_serialNum, missing_serialNum ) VALUES ( #{date, jdbcType=DATE},
-		#{place, jdbcType=VARCHAR}, #{gender, jdbcType=CHAR}, #{age,
-		jdbcType=NUMERIC}, #{etc, jdbcType=VARCHAR}, #{image,
-		jdbcType=VARCHAR}, #{memberSerialNum, jdbcType=CHAR},
-		#{adminSerialNum, jdbcType=CHAR}, #{missingSerialNum, jdbcType=CHAR} )
-	</insert>
+<insert id="insertWitness" parameterType="dto.WitnessDTO">
+  INSERT INTO witness_info (
+    witness_date, witness_place, witness_gender,
+    witness_age, witness_etc, witness_img,
+    member_serialNum
+    <if test="missingSerialNum != null and missingSerialNum != ''">, missing_serialNum</if>
+  )
+  VALUES (
+    #{date}, #{place}, #{gender},
+    #{age}, #{etc}, #{image},
+    #{memberSerialNum}
+    <if test="missingSerialNum != null and missingSerialNum != ''">, #{missingSerialNum}</if>
+  )
+</insert>
 	<select id="selectWitnessList" resultMap="witness"> SELECT * FROM
 		witness_info
 	</select>

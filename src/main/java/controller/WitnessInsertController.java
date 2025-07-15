@@ -1,9 +1,10 @@
-// ✅ WitnessInsertController.java (Controller 수정)
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.UUID;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -50,23 +51,32 @@ public class WitnessInsertController implements Controller {
             java.util.Date utilDate = sdf.parse(dateStr);
             date = new Date(utilDate.getTime());
         } catch (Exception e) {
-        	 System.out.println("🔥 날짜 파싱 실패: " + dateStr); // ← 로그 추가!
-        	    e.printStackTrace(); // ← 무조건 필요
             request.setAttribute("error", "날짜 형식이 잘못되었습니다. (예: 2025-07-15)");
             return new ModelAndView("witness_insert.jsp", false);
         }
 
         try {
+            String uploadPath = request.getServletContext().getRealPath("/resource/upload");
+            File uploadDir = new File(uploadPath);
+            if (!uploadDir.exists()) uploadDir.mkdirs();
+
             Part part = request.getPart("image");
-            String fileName = (part != null) ? part.getSubmittedFileName() : null;
-            System.out.println("▶ 파일 이름: " + fileName);
+            String fileName = null;
+            if (part != null && part.getSize() > 0) {
+                fileName = UUID.randomUUID().toString() + "_" + part.getSubmittedFileName();
+                part.write(uploadPath + File.separator + fileName);
+                System.out.println("✔ 이미지 저장 완료: " + fileName);
+            }
 
             String memberSerialNum = "MM10000001";
-            String adminSerialNum = "AA10000001";
-            String missingSerialNum = "MP10000004";
-
+            String missingSerialNum = request.getParameter("missingSerialNum");
+            if (missingSerialNum != null && missingSerialNum.trim().isEmpty()) {
+                missingSerialNum = null;
+            }
             WitnessDTO dto = new WitnessDTO(null, date, place, gender, parsedAge, etc, fileName,
-                    memberSerialNum, adminSerialNum, missingSerialNum);
+                    memberSerialNum, missingSerialNum);
+            
+            dto.setMissingSerialNum(missingSerialNum);
 
             System.out.println("▶ DTO 생성 완료: " + dto);
 
@@ -74,16 +84,16 @@ public class WitnessInsertController implements Controller {
             System.out.println("✔ insert 성공 여부: " + result);
 
             if (result) {
-                return new ModelAndView("/witnessList.do", true);
+                return new ModelAndView(request.getContextPath() + "/witnessList.do", true);
             } else {
                 request.setAttribute("error", "제보 등록 실패");
-                return new ModelAndView("/witness_insert.jsp", false);
+                return new ModelAndView("witness_insert.jsp", false);
             }
         } catch (Exception e) {
             System.out.println("🔥 예외 발생: " + e.getMessage());
             e.printStackTrace();
             request.setAttribute("error", "파일 업로드 중 오류: " + e.getMessage());
-            return new ModelAndView("/witness_insert.jsp", false);
+            return new ModelAndView("witness_insert.jsp", false);
         }
     }
 }

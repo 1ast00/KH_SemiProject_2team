@@ -11,52 +11,102 @@ public class WitnessDTO {
     private String etc;
     private String image;
     private String memberSerialNum;
-    private String adminSerialNum;
     private String missingSerialNum;
 
     public WitnessDTO() {}
 
-    public WitnessDTO(String witnessSerialNum, Date date, String place, String gender, Integer age, String etc,
-                      String image, String memberSerialNum, String adminSerialNum, String missingSerialNum) {
-        this.witnessSerialNum = witnessSerialNum;
-        this.date = date;
-        this.place = place;
-        this.gender = gender;
-        this.age = age;
-        this.etc = etc;
-        this.image = image;
-        this.memberSerialNum = memberSerialNum;
-        this.adminSerialNum = adminSerialNum;
-        this.missingSerialNum = missingSerialNum;
-    }
+	public WitnessDTO(String witnessSerialNum, Date date, String place, String gender, Integer age, String etc,
+			String image, String memberSerialNum, String missingSerialNum) {
+		super();
+		this.witnessSerialNum = witnessSerialNum;
+		this.date = date;
+		this.place = place;
+		this.gender = gender;
+		this.age = age;
+		this.etc = etc;
+		this.image = image;
+		this.memberSerialNum = memberSerialNum;
+		this.missingSerialNum = missingSerialNum;
+	}
 
-    public String getWitnessSerialNum() { return witnessSerialNum; }
-    public void setWitnessSerialNum(String witnessSerialNum) { this.witnessSerialNum = witnessSerialNum; }
+	public String getWitnessSerialNum() {
+		return witnessSerialNum;
+	}
 
-    public Date getDate() { return date; } // ← getter 변경
-    public void setDate(Date date) { this.date = date; } // ← setter 변경
+	public void setWitnessSerialNum(String witnessSerialNum) {
+		this.witnessSerialNum = witnessSerialNum;
+	}
 
-    public String getPlace() { return place; }
-    public void setPlace(String place) { this.place = place; }
+	public Date getDate() {
+		return date;
+	}
 
-    public String getGender() { return gender; }
-    public void setGender(String gender) { this.gender = gender; }
+	public void setDate(Date date) {
+		this.date = date;
+	}
 
-    public Integer getAge() { return age; }
-    public void setAge(Integer age) { this.age = age; }
+	public String getPlace() {
+		return place;
+	}
 
-    public String getEtc() { return etc; }
-    public void setEtc(String etc) { this.etc = etc; }
+	public void setPlace(String place) {
+		this.place = place;
+	}
 
-    public String getImage() { return image; }
-    public void setImage(String image) { this.image = image; }
+	public String getGender() {
+		return gender;
+	}
 
-    public String getMemberSerialNum() { return memberSerialNum; }
-    public void setMemberSerialNum(String memberSerialNum) { this.memberSerialNum = memberSerialNum; }
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 
-    public String getAdminSerialNum() { return adminSerialNum; }
-    public void setAdminSerialNum(String adminSerialNum) { this.adminSerialNum = adminSerialNum; }
+	public Integer getAge() {
+		return age;
+	}
 
-    public String getMissingSerialNum() { return missingSerialNum; }
-    public void setMissingSerialNum(String missingSerialNum) { this.missingSerialNum = missingSerialNum; }
-} 
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+	public String getEtc() {
+		return etc;
+	}
+
+	public void setEtc(String etc) {
+		this.etc = etc;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getMemberSerialNum() {
+		return memberSerialNum;
+	}
+
+	public void setMemberSerialNum(String memberSerialNum) {
+		this.memberSerialNum = memberSerialNum;
+	}
+
+	public String getMissingSerialNum() {
+		return missingSerialNum;
+	}
+
+	public void setMissingSerialNum(String missingSerialNum) {
+		this.missingSerialNum = missingSerialNum;
+	}
+
+	@Override
+	public String toString() {
+		return "WitnessDTO [witnessSerialNum=" + witnessSerialNum + ", date=" + date + ", place=" + place + ", gender="
+				+ gender + ", age=" + age + ", etc=" + etc + ", image=" + image + ", memberSerialNum=" + memberSerialNum
+				+ ", missingSerialNum=" + missingSerialNum + "]";
+	}
+    
+    
+}
