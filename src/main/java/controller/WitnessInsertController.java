@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.UUID;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -73,9 +74,15 @@ public class WitnessInsertController implements Controller {
             if (missingSerialNum != null && missingSerialNum.trim().isEmpty()) {
                 missingSerialNum = null;
             }
+
+            // 좌표 파라미터 받기
+            double latitude = Double.parseDouble(request.getParameter("latitude"));
+            double longitude = Double.parseDouble(request.getParameter("longitude"));
+
             WitnessDTO dto = new WitnessDTO(null, date, place, gender, parsedAge, etc, fileName,
                     memberSerialNum, missingSerialNum);
-            
+            dto.setLatitude(latitude);
+            dto.setLongitude(longitude);
             dto.setMissingSerialNum(missingSerialNum);
 
             System.out.println("▶ DTO 생성 완료: " + dto);

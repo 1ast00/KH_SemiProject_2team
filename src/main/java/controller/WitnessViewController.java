@@ -10,12 +10,17 @@ import view.ModelAndView;
 
 public class WitnessViewController implements Controller {
 
-	@Override
-	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String id = request.getParameter("witnessSerialNum"); // ← 파라미터 이름 주의!
+    @Override
+    public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String id = request.getParameter("witnessSerialNum");
+
         WitnessDTO dto = WitnessService.getInstance().selectWitnessById(id);
         request.setAttribute("dto", dto);
-        System.out.println(" view로 전달된 id = " + id);
+
+        // 실종 장소 좌표만 전달 (필요 시)
+//        request.setAttribute("m_lat", dto.getMissingLatitude());
+//        request.setAttribute("m_lng", dto.getMissingLongitude());
+
         return new ModelAndView("witness_view.jsp", false);
     }
 }

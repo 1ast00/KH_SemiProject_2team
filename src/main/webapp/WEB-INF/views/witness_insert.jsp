@@ -110,7 +110,11 @@
         <label>이미지 업로드:</label>
         <input type="file" name="image" accept="image/*">
         <p class="file-note">※ 이미지 파일은 선택사항입니다.</p>
-
+		
+		<input type="hidden" name="latitude" value="${lat}">
+    	<input type="hidden" name="longitude" value="${lng}">
+    	<input type="hidden" name="place" value="${place}">
+	
         <div class="btn-box">
             <button type="submit" class="btn btn-submit">등록</button>
             <button type="reset" class="btn btn-cancel">취소</button>
