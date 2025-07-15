@@ -1,0 +1,419 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: inherit; /* 링크 기본 색상 제거 */
+}
+
+.logo-text {
+    display: inline-block; /* h1과 p를 인라인 블록으로 묶어 함께 정렬 */
+    vertical-align: middle;
+}
+
+.logo img {
+    width: 60px; /* 로고 이미지 크기 조정 */
+    height: auto;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.logo h1 {
+    display: inline-block; /* "다시, 봄"과 이미지를 가로로 정렬 */
+    font-size: 2.5em; /* "다시, 봄" 크기 */
+    color: #FF69B4; /* 핑크색 계열 */
+    margin: 0;
+    vertical-align: middle;
+}
+
+.logo p {
+    font-size: 1.2em; /* "Dasi, Bom" 크기 */
+    color: #888;
+    margin: 5px 0 0;
+    display: block; /* 줄바꿈하여 h1 아래에 오도록 */
+    text-align: left; /* Dasi,Bom 텍스트 왼쪽 정렬 */
+}
+
+/* 메인 네비게이션 */
+.main-nav {
+    width: 100%; /* 네비게이션 전체 너비 */
+    background-color: #FFB6C1; /* 메뉴바 배경색 */
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto; /* 중앙 정렬 */
+    display: flex; /* 메뉴 항목 가로 정렬 */
+    justify-content: space-around; /* 메뉴 항목을 넓게 퍼뜨림 */
+    max-width: 1440px; /* 최대 너비 설정 */
+    box-sizing: border-box; /* 패딩이 너비에 포함되도록 */
+}
+
+.main-nav ul li {
+    position: relative; /* 드롭다운 위치 지정을 위해 */
+    padding: 15px 0; /* 좌우 패딩을 0으로 하고, 내부 링크에 패딩 적용 */
+    flex-grow: 1; /* 남은 공간을 균등하게 차지하여 넓게 퍼지도록 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+.main-nav ul li a {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1em;
+    display: block; /* 링크 영역 확장 */
+    padding: 0 10px; /* 링크 자체에 패딩을 주어 클릭 영역 확보 */
+}
+
+.main-nav ul li:hover {
+    background-color: #FFC0CB; /* 호버 시 배경색 변경 */
+}
+
+/* 드롭다운 메뉴 스타일 (초기에는 숨김) */
+.dropdown-menu {
+    display: none !important; /* 초기에는 숨김 + imp추가한거 */
+    position: absolute;
+    top: 100%; /* 상위 메뉴 바로 아래에 위치 */
+    left: 0;
+    background-color: #FFC0CB; /* 드롭다운 배경색 */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    min-width: 100%; /* 상위 메뉴 너비에 맞춤 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* 그림자 추가 */
+    z-index: 10; /* 다른 요소 위로 오게 */
+}
+
+.dropdown-menu li {
+    padding: 0; /* 드롭다운 메뉴 li의 패딩 초기화 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+}
+
+.dropdown-menu li a {
+    color: #fff;
+    font-weight: normal;
+    font-size: 1em;
+    padding: 10px 15px; /* 드롭다운 항목 링크 패딩 */
+    display: block; /* 링크 영역 확장 */
+}
+
+.dropdown-menu li:hover {
+    background-color: #FFB6C1; /* 드롭다운 항목 호버 시 색상 */
+}
+
+/* 드롭다운 표시 (CSS only approach) */
+.has-dropdown:hover .dropdown-menu {
+    display: block !important;  /* 마우스 오버 시 드롭다운 메뉴 표시 + imp추가함*/
+}
+
+
+/* 검색 영역 */
+.search-section {
+    padding: 40px 20px;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* 상단 정렬 */
+    min-height: 150px; /* 최소 높이 설정 (검색창 확장 대비) */
+}
+
+.search-input-container {
+    display: flex;
+    align-items: center; /* 세로 중앙 정렬 */
+    width: 100%;
+    max-width: 900px; /* 전체 검색 바의 최대 너비 (원하는 크기로 조절) */
+    background-color: #fff; /* 배경색 */
+    border: 2px solid #ff99cc; /* 핑크색 테두리 */
+    border-radius: 30px; /* 둥근 모서리 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* 은은한 그림자 */
+    padding: 8px 20px; /* 내부 패딩 (전체 높이 조절) */
+    transition: all 0.3s ease; /* 부드러운 전환 효과 */
+    position: relative; /* 자식 요소 절대 위치 지정을 위해 */
+}
+
+#mainSearchInput {
+    flex-grow: 1; /* 남은 공간을 채우도록 확장 */
+    padding: 12px 15px;
+    border: none;
+    outline: none;
+    font-size: 1.1em;
+}
+
+#searchButton {
+    background-color: transparent; /* 배경색 없음 */
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+#searchButton img {
+    width: 24px; /* 검색 아이콘 크기 */
+    height: 24px;
+}
+
+
+
+/* ---------------------------------------------------- */
+/* 상세 검색 입력칸 (클릭 시 나타나는 부분)             */
+/* ---------------------------------------------------- */
+
+/* 기본적으로 숨김 처리 */
+.hidden-search-details {
+    display: none; /* 초기에는 숨김 */
+    /* JavaScript로 .show-detailed-search 클래스가 추가되면 보이도록 */
+    position: absolute; /* search-input-container 내부에 절대 위치 */
+    top: 100%; /* search-input-container 바로 아래에 위치 */
+    left: 0;
+    width: 100%;
+    /* border-top: 1px solid #ffccdd; /* 상단 구분선 (선택 사항) */
+    background-color: #fff;
+    border: 2px solid #ff99cc; /* 전체 바와 동일한 테두리 */
+    border-top: none; /* 위쪽 테두리는 없앰 */
+    border-radius: 0 0 30px 30px; /* 아래쪽만 둥근 모서리 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* 그림자 효과로 떠 있는 느낌 */
+    z-index: 10; /* 다른 요소 위에 오도록 z-index 설정 */
+    padding: 15px 20px 20px; /* 내부 패딩 */
+    box-sizing: border-box; /* 패딩이 너비에 포함되도록 */
+
+    /* 이미지와 같이 가로로 나열되도록 설정 */
+    flex-wrap: wrap; /* 내용이 넘치면 다음 줄로 */
+    justify-content: space-between; /* 요소들 사이에 공간 배분 */
+    gap: 10px; /* 요소들 사이의 간격 */
+}
+
+/* 상세 검색 입력 필드들 */
+.hidden-search-details input {
+    flex: 1 1 calc(50% - 15px); /* 한 줄에 2개씩, 간격 고려 */
+    /* 스크린샷처럼 5개 필드면, 첫 4개는 2개씩, 마지막 1개는 100% 또는 50% */
+    /* 예: 2개씩 2줄 + 1개 단독 줄 */
+    padding: 10px 12px;
+    border: none; /* 내부 입력 필드의 테두리 제거 */
+    outline: none;
+    font-size: 1em;
+    background-color: transparent; /* 배경 투명 */
+    color: #333;
+}
+
+/* 상세 검색 입력 필드들 사이의 구분선 */
+/* :not(:last-child) 를 사용하여 마지막 input에는 적용 안 함 */
+.hidden-search-details input:not(:last-of-type) {
+    border-right: 1px solid #ffccdd; /* 오른쪽에 연한 핑크색 구분선 */
+    /* 각 필드가 한 줄에 하나씩 들어갈 경우 border-bottom 사용 */
+    /* border-bottom: 1px solid #ffccdd; */
+}
+
+/* 상세 검색 입력 필드 플레이스홀더 색상 */
+.hidden-search-details input::placeholder {
+    color: #ffb3e6; /* 연한 핑크색 플레이스홀더 */
+    opacity: 1;
+}
+
+/* 상세 검색 버튼 */
+#detailedSearchBtn {
+    width: 100%; /* 버튼은 한 줄 전체 사용 */
+    padding: 12px;
+    margin-top: 15px; /* 다른 입력 필드와의 간격 */
+    background-color: #ff99cc; /* 핑크색 버튼 */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+#detailedSearchBtn:hover {
+    background-color: #ff77bb; /* 호버 시 색상 변경 */
+}
+
+/* JavaScript로 이 클래스를 토글하여 상세 검색을 보이고 숨김 */
+.show-detailed-search {
+    display: flex !important; /* !important로 다른 display 속성 무시하고 강제로 flex로 표시 */
+    flex-direction: row; /* 스크린샷처럼 가로로 배치 */
+    /* 여기서는 .hidden-search-details에 직접 flex를 주었으므로 이 클래스는 사실상 필요없을 수 있습니다.
+       만약 .search-input-container 자체의 디자인이 변경되어야 한다면 유용합니다.
+       여기서는 .hidden-search-details가 펼쳐지는 형태이므로,
+       .hidden-search-details의 display: none; 을 display: flex; 로 토글하는 용도로만 사용됩니다. */
+}
+
+/* 상세 검색이 활성화될 때 기본 검색어 입력창 숨기기 (선택 사항) */
+.search-input-container.active #mainSearchInput,
+.search-input-container.active #searchButton {
+    display: none;
+}
+
+
+
+/* 메인 콘텐츠 래퍼 (공지사항 및 실종자 리스트를 담는 컨테이너) */
+.main-content-wrapper {
+    display: flex; /* 자식 요소(섹션)를 가로로 배치 */
+    justify-content: center;
+    gap: 30px; /* 섹션들 사이 간격 */
+    padding: 30px 20px;
+    max-width: 1200px; /* 최대 너비 제한 (1440px에서 양 옆 여백 주기 위함) */
+    margin: 0 auto; /* 중앙 정렬 */
+    flex-wrap: wrap; /* 화면이 작아지면 다음 줄로 */
+}
+
+/* 공지사항 섹션 */
+.notice-section,
+.missing-list-section {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 25px;
+    box-sizing: border-box;
+    flex: 1; /* 남은 공간을 균등하게 차지 */
+    min-width: 450px; /* 최소 너비 지정 */
+}
+
+.notice-section h2,
+.missing-list-section h2 {
+    color: #FF69B4; /* 타이틀 색상 */
+    font-size: 1.6em;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.notice-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.notice-section th,
+.notice-section td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    font-size: 0.95em;
+}
+
+.notice-section th {
+    background-color: #f9f9f9;
+    font-weight: bold;
+    color: #555;
+}
+
+.notice-section td a {
+    color: #007bff; /* 공지사항 링크 색상 */
+}
+
+.notice-section tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* 실종자 리스트 섹션 */
+.missing-cards-container {
+    display: flex;
+    flex-wrap: wrap; /* 카드들을 다음 줄로 넘기기 */
+    gap: 20px; /* 카드 사이 간격 */
+    justify-content: center; /* 카드들을 가운데 정렬 */
+    margin-top: 15px;
+}
+
+.missing-person-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 200px; /* 카드 너비 고정 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background-color: #fff;
+    transition: transform 0.2s ease-in-out; /* 호버 애니메이션 */
+}
+
+.missing-person-card:hover {
+    transform: translateY(-5px); /* 호버 시 살짝 위로 */
+}
+
+.missing-person-card a {
+    display: block; /* 링크 영역 전체로 확장 */
+    color: #333; /* 텍스트 색상 */
+    padding-bottom: 15px; /* 하단 패딩 */
+}
+
+.missing-person-card img {
+    width: 100%;
+    height: 180px; /* 이미지 높이 고정 */
+    object-fit: cover; /* 이미지가 잘리지 않게 채움 */
+    display: block; /* 이미지 아래 공백 제거 */
+}
+
+.missing-person-card .person-info {
+    padding: 10px 15px 0;
+    font-size: 0.9em;
+}
+
+.missing-person-card .person-info p {
+    margin: 5px 0; /* 정보 항목별 마진 */
+    line-height: 1.4;
+}
+
+/* 푸터 */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    background-color: #333;
+    color: #fff;
+    font-size: 0.9em;
+}
+
+/* 미디어 쿼리 (화면 크기에 따라 레이아웃 변경) */
+@media (max-width: 768px) {
+    .main-header .logo {
+        padding-left: 20px; /* 작은 화면에서도 좌측 정렬 유지 */
+    }
+
+    .main-nav ul {
+        flex-direction: column; /* 작은 화면에서 메뉴 세로 정렬 */
+        justify-content: flex-start; /* 세로 정렬 시 시작 부분에 정렬 */
+    }
+
+    .main-nav ul li {
+        width: 100%; /* 메뉴 항목 전체 너비 */
+        padding: 10px 0;
+    }
+
+    .dropdown-menu {
+        position: static; /* 드롭다운이 컨텐츠 흐름에 따라 배치 */
+        width: 100%;
+        box-shadow: none;
+    }
+
+    .main-content-wrapper {
+        flex-direction: column; /* 섹션들을 세로로 쌓음 */
+        align-items: center;
+    }
+
+    .notice-section,
+    .missing-list-section {
+        min-width: unset; /* 최소 너비 제한 해제 */
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-header .logo h1 {
+        font-size: 2em;
+    }
+
+    .main-header .logo p {
+        font-size: 1em;
+    }
+
+    .search-input-container,
+    .hidden-search-details input {
+        width: 90%;
+        flex: 1 1 100%; /* 작은 화면에서 입력칸 전체 너비 */
+    }
+}
