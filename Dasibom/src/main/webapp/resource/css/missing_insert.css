@@ -1,0 +1,111 @@
+@charset "UTF-8";
+
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+	background-color: #fff;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+header {
+	background-color: #fefefe;
+	padding: 30px 0 10px;
+}
+
+#formTitle {
+	font-size: 30px;
+	font-weight: bold;
+	margin: 0;
+}
+
+main {
+	max-width: 700px;
+	margin: 30px auto;
+	padding: 20px;
+	border-radius: 10px;
+	text-align: left;
+}
+
+form {
+	margin-bottom: 30px;
+}
+
+.form_group {
+	margin-bottom: 20px;
+	/* [수정됨] 라벨과 입력 요소를 가로로 배치하기 위해 flex 적용 */
+	display: flex;
+	align-items: center; /* 세로 중앙 정렬 */
+	gap: 15px; /* 라벨과 입력 요소 사이의 간격 */
+}
+
+.form_group label {
+	/* [수정됨] 라벨 너비 고정 및 정렬 */
+	min-width: 120px; /* 라벨의 최소 너비 설정 */
+	font-weight: bold;
+	font-size: 15px;
+	text-align: left;
+}
+
+.form_group input[type="text"], .form_group input[type="date"],
+	.form_group input[type="file"], .form_group select, .form_group textarea
+	{
+	width: 100%;
+	padding: 10px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	box-sizing: border-box;
+}
+
+.form_group textarea {
+	resize: vertical;
+}
+
+.button-group {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.submit-button {
+	background-color: #f472b6;
+	color: white;
+	font-weight: bold;
+	padding: 10px 20px;
+	margin: 0 5px;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+.submit-button:hover {
+	background-color: #FCA5C1;
+}
+
+.cancel-button {
+	background-color: rgb(128, 128, 128);
+	color: white;
+	font-weight: bold;
+	padding: 10px 20px;
+	margin: 0 5px;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+}
+
+.cancel-button:hover {
+	background-color: rgb(70, 66, 66);
+}
+
+
+.location-search-container {
+	display: flex; 
+	align-items: center; 
+	gap: 10px; 
+	width: 100%; 
+}
+
+
+.location-search-container input[type="text"] {
+	flex-grow: 1; 
+}
