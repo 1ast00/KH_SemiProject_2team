@@ -64,6 +64,9 @@ public class HandlerMapping {
 		case "witnessInsert" :
 			controller = new WitnessInsertController();
 			break;
+		case "witnessDelete" :
+			controller = new WitnessDeleteController();
+			break;
 		
 
 		}
