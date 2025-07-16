@@ -14,8 +14,7 @@ public class WitnessDTO {
     private String missingSerialNum;
 
     // (선택) 실종자 좌표가 필요하다면 포함, 아니라면 생략 가능
-    private double missingLatitude;
-    private double missingLongitude;
+    
 
     public WitnessDTO() {}
 
@@ -104,27 +103,15 @@ public class WitnessDTO {
         this.missingSerialNum = missingSerialNum;
     }
 
-    public double getMissingLatitude() {
-        return missingLatitude;
-    }
+	@Override
+	public String toString() {
+		return "WitnessDTO [witnessSerialNum=" + witnessSerialNum + ", date=" + date + ", place=" + place + ", gender="
+				+ gender + ", age=" + age + ", etc=" + etc + ", image=" + image + ", memberSerialNum=" + memberSerialNum
+				+ ", missingSerialNum=" + missingSerialNum + "]";
+	}
 
-    public void setMissingLatitude(double missingLatitude) {
-        this.missingLatitude = missingLatitude;
-    }
+    
 
-    public double getMissingLongitude() {
-        return missingLongitude;
-    }
-
-    public void setMissingLongitude(double missingLongitude) {
-        this.missingLongitude = missingLongitude;
-    }
-
-    @Override
-    public String toString() {
-        return "WitnessDTO [witnessSerialNum=" + witnessSerialNum + ", date=" + date + ", place=" + place
-                + ", gender=" + gender + ", age=" + age + ", etc=" + etc + ", image=" + image
-                + ", memberSerialNum=" + memberSerialNum + ", missingSerialNum=" + missingSerialNum
-                + ", missingLatitude=" + missingLatitude + ", missingLongitude=" + missingLongitude + "]";
-    }
+    
+	
 }
