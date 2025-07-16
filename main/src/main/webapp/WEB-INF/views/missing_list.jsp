@@ -7,11 +7,12 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/template/header.jsp" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/missing_list.css">
 <div class="container">
 
     <main>
         <h2>실종자 목록</h2>
-
+	
         <div class="search-box">
             <input type="text" placeholder="이름">
             <input type="text" placeholder="나이">
