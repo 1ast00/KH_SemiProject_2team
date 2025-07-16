@@ -1,39 +1,47 @@
 package dto;
 
-public class WitnessDTO {
+import java.sql.Date;
 
-	private String id;
-	private String date;
+public class WitnessDTO {
+	private String witnessSerialNum;
+	private Date date;
 	private String place;
 	private String gender;
-	private String age;
+	private Integer age;
 	private String etc;
 	private String image;
+	private String memberSerialNum;
+	private String missingSerialNum;
 
-	public WitnessDTO(String id, String date, String place, String gender, String age, String etc, String image) {
-		super();
-		this.id = id;
+	public WitnessDTO() {
+	}
+
+	public WitnessDTO(String witnessSerialNum, Date date, String place, String gender, Integer age, String etc,
+			String image, String memberSerialNum, String missingSerialNum) {
+		this.witnessSerialNum = witnessSerialNum;
 		this.date = date;
 		this.place = place;
 		this.gender = gender;
 		this.age = age;
 		this.etc = etc;
 		this.image = image;
+		this.memberSerialNum = memberSerialNum;
+		this.missingSerialNum = missingSerialNum;
 	}
 
-	public String getId() {
-		return id;
+	public String getWitnessSerialNum() {
+		return witnessSerialNum;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setWitnessSerialNum(String witnessSerialNum) {
+		this.witnessSerialNum = witnessSerialNum;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
@@ -53,11 +61,11 @@ public class WitnessDTO {
 		this.gender = gender;
 	}
 
-	public String getAge() {
+	public Integer getAge() {
 		return age;
 	}
 
-	public void setAge(String age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 
@@ -77,9 +85,26 @@ public class WitnessDTO {
 		this.image = image;
 	}
 
+	public String getMemberSerialNum() {
+		return memberSerialNum;
+	}
+
+	public void setMemberSerialNum(String memberSerialNum) {
+		this.memberSerialNum = memberSerialNum;
+	}
+
+	public String getMissingSerialNum() {
+		return missingSerialNum;
+	}
+
+	public void setMissingSerialNum(String missingSerialNum) {
+		this.missingSerialNum = missingSerialNum;
+	}
+
 	@Override
 	public String toString() {
-		return "WitnessDTO [id=" + id + ", date=" + date + ", place=" + place + ", gender=" + gender + ", age=" + age
-				+ ", etc=" + etc + ", image=" + image + "]";
+		return "WitnessDTO [witnessSerialNum=" + witnessSerialNum + ", date=" + date + ", place=" + place + ", gender="
+				+ gender + ", age=" + age + ", etc=" + etc + ", image=" + image + ", memberSerialNum=" + memberSerialNum
+				+ ", missingSerialNum=" + missingSerialNum + "]";
 	}
 }

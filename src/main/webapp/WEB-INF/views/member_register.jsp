@@ -11,9 +11,9 @@
 
 	<div class="container">
 		<h2>회원가입</h2>
-		<form action="memberRegister" method="post">
-			<input type="text" name="member_serialNum"
-				placeholder="회원 고유번호 (예: M0001)" required />
+		<form action="memberRegister.do" method="post">
+			<input type="hidden" name="admin_serialNum" value="Admin">
+
 
 			<!-- 아이디 + 중복확인 버튼 -->
 			<div style="display: flex; gap: 10px;">
@@ -28,9 +28,7 @@
 				required /> <input type="text" name="member_name" placeholder="이름"
 				required /> <input type="email" name="member_email"
 				placeholder="이메일 (선택)" /> <input type="text" name="member_phone"
-				placeholder="전화번호" required /> <input type="text"
-				name="admin_serialNum" placeholder="소속 관리자 번호" required /> <input
-				type="submit" value="회원가입" />
+				placeholder="전화번호" required /> <input type="submit" value="회원가입" />
 		</form>
 	</div>
 
@@ -39,16 +37,15 @@
 window.onload = function () {
     // 비밀번호 확인
     document.querySelector("form").onsubmit = function (e) {
-    const pw = document.querySelector("input[name='member_pw']").value;
-    const pwCheck = document.querySelector("input[name='member_pw_check']").value;
+        const pw = document.querySelector("input[name='member_pw']").value;
+        const pwCheck = document.querySelector("input[name='member_pw_check']").value;
 
-    if (pw !== pwCheck) {
-        alert("비밀번호가 일치하지 않습니다.");
-        e.preventDefault();
-        return false;
-    }
-};
-
+        if (pw !== pwCheck) {
+            alert("비밀번호가 일치하지 않습니다.");
+            e.preventDefault();
+            return false;
+        }
+    };
 
     // 아이디 중복 검사
     document.getElementById("checkIdBtn").onclick = function () {
@@ -61,7 +58,8 @@ window.onload = function () {
             return;
         }
 
-        fetch("checkMemberId?member_id=" + encodeURIComponent(memberId))
+        
+        fetch("checkMemberId.do?member_id=" + encodeURIComponent(memberId))
             .then(res => res.text())
             .then(data => {
                 if (data === "duplicate") {
@@ -78,8 +76,7 @@ window.onload = function () {
             });
     };
 };
-
-</script>
+    </script>
 
 </body>
 </html>

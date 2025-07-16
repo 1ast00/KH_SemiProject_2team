@@ -12,43 +12,48 @@ public class MissingMapSearchController implements Controller {
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		ModelAndView view = null;
 
-		String place = request.getParameter("place");
-		
-		// missing_insert.jsp에서 추가된 input태그 hidden타입으로 전송받음
+		String placeQuery = request.getParameter("missingPlace");
+
 		String missingName = request.getParameter("missingName");
 		String missingGender = request.getParameter("missingGender");
 		String missingBirth = request.getParameter("missingBirth");
 		String missingEtc = request.getParameter("missingEtc");
 		String missingDate = request.getParameter("missingDate");
 
-		if (place == null || place.trim().isEmpty()) {
-			response.getWriter().println("장소명을 입력해주세요.");
+		if (placeQuery == null || placeQuery.trim().isEmpty()) {
+			request.setAttribute("errorMessage", "장소명을 입력해주세요.");
+			view = new ModelAndView("missing_insert.jsp", false);
 		} else {
 			try {
-				String[] result = MissingAPIService.getCoordinates(place);
+				String[] result = MissingAPIService.getCoordinates(placeQuery);
 
 				if (result != null) {
 					request.setAttribute("lat", result[0]);
 					request.setAttribute("lng", result[1]);
-					request.setAttribute("place", result[2]); // 검색된 장소 이름
+					request.setAttribute("place", result[2]); // API에서 반환된 정확한 장소 이름
 
-					// missing_map.jsp로 전달하기위해 request에 다시 담기 -> 
-					// missing_map.jsp에서 이 값들로 다시 hidden input으로 만들어서 missing_insert.jsp로 보냄
+					// 다른 입력값들도 그대로 전달
 					request.setAttribute("missingName", missingName);
 					request.setAttribute("missingGender", missingGender);
 					request.setAttribute("missingBirth", missingBirth);
 					request.setAttribute("missingEtc", missingEtc);
 					request.setAttribute("missingDate", missingDate);
-					
 
 					view = new ModelAndView("missing_map.jsp", false);
 				} else {
-					response.getWriter().println("장소를 찾을 수 없습니다.");
+					// 검색 결과가 없을 경우, 입력값 유지를 위해 다시 전달
+					request.setAttribute("errorMessage", "장소를 찾을 수 없습니다. 다른 검색어로 시도해보세요.");
+					request.setAttribute("missingName", missingName);
+					request.setAttribute("missingGender", missingGender);
+					request.setAttribute("missingBirth", missingBirth);
+					request.setAttribute("missingEtc", missingEtc);
+					request.setAttribute("missingDate", missingDate);
 					view = new ModelAndView("missing_insert.jsp", false);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
-				response.getWriter().println("오류 발생: " + e.getMessage());
+				request.setAttribute("errorMessage", "지도 API 서버 통신 중 오류가 발생했습니다: " + e.getMessage());
+				view = new ModelAndView("missing_insert.jsp", false);
 			}
 		}
 		return view;

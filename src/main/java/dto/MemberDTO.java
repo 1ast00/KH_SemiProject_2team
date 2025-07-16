@@ -1,105 +1,84 @@
 package dto;
 
-import java.sql.Date;
-
 public class MemberDTO {
-    private String member_serialNum;   // 회원 고유번호
-    private String member_id;          // 아이디
-    private String member_pw;          // 비밀번호
-    private String member_name;        // 이름
-    private String member_email;       // 이메일 (nullable)
-    private String member_phone;       // 전화번호
-    private String admin_serialNum;    // 소속 관리자 번호
-    private Date member_birth;        
-    private String member_gender;  
+    private String memberSerialNum;   // 회원 고유번호
+    private String id;          // 아이디
+    private String pw;          // 비밀번호
+    private String name;        // 이름
+    private String email;       // 이메일 (nullable)
+    private String phone;       // 전화번호
+    
+    // 외래키
+    private String adminSerialNum;    // 소속 관리자 번호
 
     // 기본 생성자
     public MemberDTO() {}
 
-    public MemberDTO(String member_serialNum, String member_id, String member_pw, String member_name,
-			String member_email, String member_phone, String admin_serialNum, Date member_birth, String member_gender) {
+	public MemberDTO(String memberSerialNum, String id, String pw, String name, String email, String phone,
+			String adminSerialNum) {
 		super();
-		this.member_serialNum = member_serialNum;
-		this.member_id = member_id;
-		this.member_pw = member_pw;
-		this.member_name = member_name;
-		this.member_email = member_email;
-		this.member_phone = member_phone;
-		this.admin_serialNum = admin_serialNum;
-		this.member_birth = member_birth;
-		this.member_gender = member_gender;
+		this.memberSerialNum = memberSerialNum;
+		this.id = id;
+		this.pw = pw;
+		this.name = name;
+		this.email = email;
+		this.phone = phone;
+		this.adminSerialNum = adminSerialNum;
 	}
 
-	// Getter & Setter
-    public String getMember_serialNum() {
-        return member_serialNum;
-    }
-
-    public void setMember_serialNum(String member_serialNum) {
-        this.member_serialNum = member_serialNum;
-    }
-
-    public String getMember_id() {
-        return member_id;
-    }
-
-    public void setMember_id(String member_id) {
-        this.member_id = member_id;
-    }
-
-    public String getMember_pw() {
-        return member_pw;
-    }
-
-    public void setMember_pw(String member_pw) {
-        this.member_pw = member_pw;
-    }
-
-    public String getMember_name() {
-        return member_name;
-    }
-
-    public void setMember_name(String member_name) {
-        this.member_name = member_name;
-    }
-
-    public String getMember_email() {
-        return member_email;
-    }
-
-    public void setMember_email(String member_email) {
-        this.member_email = member_email;
-    }
-
-    public String getMember_phone() {
-        return member_phone;
-    }
-
-    public void setMember_phone(String member_phone) {
-        this.member_phone = member_phone;
-    }
-
-    public String getAdmin_serialNum() {
-        return admin_serialNum;
-    }
-
-    public void setAdmin_serialNum(String admin_serialNum) {
-        this.admin_serialNum = admin_serialNum;
-    }
-
-	public Date getMember_birth() {
-		return member_birth;
+	public String getMemberSerialNum() {
+		return memberSerialNum;
 	}
 
-	public void setMember_birth(Date member_birth) {
-		this.member_birth = member_birth;
+	public void setMemberSerialNum(String memberSerialNum) {
+		this.memberSerialNum = memberSerialNum;
 	}
 
-	public String getMember_gender() {
-		return member_gender;
+	public String getId() {
+		return id;
 	}
 
-	public void setMember_gender(String member_gender) {
-		this.member_gender = member_gender;
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getPw() {
+		return pw;
+	}
+
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getAdminSerialNum() {
+		return adminSerialNum;
+	}
+
+	public void setAdminSerialNum(String adminSerialNum) {
+		this.adminSerialNum = adminSerialNum;
 	}
 }

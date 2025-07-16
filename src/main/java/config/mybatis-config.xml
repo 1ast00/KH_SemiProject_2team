@@ -18,5 +18,6 @@
     <mapper resource="config/member-mapper.xml"/>
     <mapper resource="config/admin-mapper.xml"/>
     <mapper resource="config/missing-mapper.xml"/>
+    <mapper resource="config/witness-mapper.xml"/>
   </mappers>
 </configuration>

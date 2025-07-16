@@ -31,14 +31,14 @@
     const mapContainer = document.getElementById('map');
     const mapOption = {
         center: new kakao.maps.LatLng(lat, lng),
-        level: 3
+        level: 7
     };
 
     const map = new kakao.maps.Map(mapContainer, mapOption);
 
     const circle = new kakao.maps.Circle({
         center: new kakao.maps.LatLng(lat, lng),
-        radius: 1000,
+        radius: 800,
         strokeWeight: 3,
         strokeColor: '#00aaff',
         fillColor: '#aaffff',

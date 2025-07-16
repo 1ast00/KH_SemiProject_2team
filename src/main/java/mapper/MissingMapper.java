@@ -8,4 +8,9 @@ public interface MissingMapper {
 
 	List<MissingPersonDTO> selectMissingList();
 
+	int insertMissingPerson(MissingPersonDTO person);
+
+	String selectAdminSerialNumByMember(String memberSerialNum);
+
+	int deleteMissingPerson(String missingSerialNum);
 }

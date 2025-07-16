@@ -31,6 +31,12 @@ public class HandlerMapping {
 		case "memberRegister":
 			controller = new MemberRegisterController();
 			break;
+		case "memberMypageInfoView":
+			controller = new MemberMypageInfoView();
+			break;
+		case "checkMemberID":
+			controller = new CheckMemberIDController();
+			break;
 		case "adminMain":
 			controller = new AdminMainController();
 			break;
@@ -58,6 +64,9 @@ public class HandlerMapping {
 		case "missingMapSearch":
 			controller = new MissingMapSearchController();
 			break;
+		case "missingDelete":
+			controller = new MissingDeleteController();
+			break;
 		case "witnessMapSearch":
 			controller = new WitnessMapSearchController();
 			break;
@@ -72,6 +81,9 @@ public class HandlerMapping {
 			break;
 		case "witnessView":
 			controller = new WitnessViewController();
+			break;
+		case "witnessDelete" :
+			controller = new WitnessDeleteController();
 			break;
 		}
 		return controller;

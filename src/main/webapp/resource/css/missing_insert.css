@@ -33,13 +33,18 @@ form {
 
 .form_group {
 	margin-bottom: 20px;
+	/* [수정됨] 라벨과 입력 요소를 가로로 배치하기 위해 flex 적용 */
+	display: flex;
+	align-items: center; /* 세로 중앙 정렬 */
+	gap: 15px; /* 라벨과 입력 요소 사이의 간격 */
 }
 
 .form_group label {
-	display: block;
+	/* [수정됨] 라벨 너비 고정 및 정렬 */
+	min-width: 120px; /* 라벨의 최소 너비 설정 */
 	font-weight: bold;
-	margin-bottom: 8px;
 	font-size: 15px;
+	text-align: left;
 }
 
 .form_group input[type="text"], .form_group input[type="date"],
@@ -57,12 +62,6 @@ form {
 	resize: vertical;
 }
 
-hr {
-	border: none;
-	border-top: 1px solid #ddd;
-	margin: 30px 0;
-}
-
 .button-group {
 	text-align: center;
 	margin-top: 20px;
@@ -77,6 +76,7 @@ hr {
 	border: none;
 	border-radius: 6px;
 	cursor: pointer;
+	white-space: nowrap;
 }
 
 .submit-button:hover {
@@ -98,32 +98,13 @@ hr {
 	background-color: rgb(70, 66, 66);
 }
 
-#locationSearchForm .form_group label {
-	display: block;
-	margin-bottom: 8px;
-	font-weight: bold;
-	font-size: 15px;
+.location-search-container {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	width: 100%;
 }
 
-#locationSearchForm .form_group input[type="text"] {
-	width: calc(100% - 120px);
-	display: inline-block;
-	vertical-align: middle;
-	margin-right: 10px;
-}
-
-#locationSearchForm .form_group button[type="submit"] {
-	display: inline-block;
-	vertical-align: middle;
-	background-color: #D8578D;
-	color: white;
-	font-weight: bold;
-	padding: 10px 20px;
-	border: none;
-	border-radius: 6px;
-	cursor: pointer;
-}
-
-#locationSearchForm .form_group button[type="submit"]:hover {
-	background-color: #ea7ba9;
+.location-search-container input[type="text"] {
+	flex-grow: 1;
 }

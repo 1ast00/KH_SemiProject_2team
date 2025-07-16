@@ -6,9 +6,9 @@ import dto.MemberDTO;
 
 public interface MemberMapper {
 
-	int insertMember(MemberDTO dto);
-
 	MemberDTO memberLogin(Map<String, Object> map);
 
 	MemberDTO selectById(String memberId);
+
+	int insertMember(MemberDTO dto);
 }
