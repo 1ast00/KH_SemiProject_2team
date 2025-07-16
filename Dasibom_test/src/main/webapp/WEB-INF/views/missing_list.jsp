@@ -4,23 +4,10 @@
 <html>
 <head>
     <title>다시, 봄 - 실종자 목록</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/missing_list.css">
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/template/header.jsp" />
 <div class="container">
-    <header class="main-header">
-        <div class="logo">
-            <a href="#">다시, 봄 Dasi, Bom</a>
-        </div>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="#" class="active">실종 정보</a></li>
-                <li><a href="#">목격 정보</a></li>
-                <li><a href="#">공지사항</a></li>
-                <li><a href="#">마이 페이지</a></li>
-            </ul>
-        </nav>
-    </header>
 
     <main>
         <h2>실종자 목록</h2>

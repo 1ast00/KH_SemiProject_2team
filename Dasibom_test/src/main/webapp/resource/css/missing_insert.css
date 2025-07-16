@@ -76,6 +76,7 @@ form {
 	border: none;
 	border-radius: 6px;
 	cursor: pointer;
+	white-space: nowrap;
 }
 
 .submit-button:hover {

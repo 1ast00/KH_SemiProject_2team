@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/missing_insert.css">
 </head>
 <body>
+	<jsp:include page="/WEB-INF/views/template/header.jsp" />
 	<header>
 		<h1 id="formTitle">실종자 접수</h1>
 	</header>
@@ -44,7 +45,7 @@
 				<label for="missingPlace">실종 추정 위치:</label>
 				<div class="location-search-container">
 					<input type="text" id="missingPlace" name="missingPlace" value="${param.place}" required />
-					<button type="submit" formaction="missingMapSearch.do" formmethod="get" class="submit-button">위치 검색</button>
+					<button type="submit" formaction="missingMapSearch.do" formmethod="get" class="submit-button">위치<br>검색</button>
 				</div>
 			</div>
 

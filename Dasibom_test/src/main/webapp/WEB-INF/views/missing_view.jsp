@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/missing_view.css">
 </head>
 <body>
+	<jsp:include page="/WEB-INF/views/template/header.jsp" />
 	<h1>실종자 정보</h1>
 
 	<c:if test="${not empty errorMessage}">
