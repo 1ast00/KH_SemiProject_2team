@@ -101,7 +101,7 @@ body {
 
 			<div class="info">
 				<p>
-					<span>추정 나이:</span>
+					<span>추정 나이  :  </span>
 					<c:choose>
 						<c:when test="${dto.age <= 10}">0~10세</c:when>
 						<c:when test="${dto.age <= 20}">10~20세</c:when>
@@ -118,13 +118,16 @@ body {
 				</p>
 
 				<p>
-					<span>추정 성별:</span> ${dto.gender}
+					<span>추정 성별  :  </span> ${dto.gender}
 				</p>
 				<p>
-					<span>목격 장소:</span> ${dto.place}
+					<span>목격 장소  :  </span> ${dto.place}
 				</p>
 				<p>
-					<span>목격 날짜:</span> ${dto.date}
+					<span>목격 날짜  :  </span> ${dto.date}
+				</p>
+				<p>
+				<span>기타 특징  :  </span> ${dto.etc}
 				</p>
 			</div>
 		</div>
@@ -161,7 +164,7 @@ body {
 
 				const witnessCircle = new kakao.maps.Circle({
 					center : witnessPos,
-					radius : 80,
+					radius : 800,
 					strokeWeight : 2,
 					strokeColor : '#0033cc',
 					strokeOpacity : 0.8,
@@ -175,7 +178,7 @@ body {
 
 					const missingCircle = new kakao.maps.Circle({
 						center : missingPos,
-						radius : 80,
+						radius : 800,
 						strokeWeight : 2,
 						strokeColor : '#cc0000',
 						strokeOpacity : 0.8,
