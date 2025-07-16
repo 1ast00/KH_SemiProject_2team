@@ -83,7 +83,7 @@
     <div class="container">
         <div class="title">목격자 제보</div>
         <div class="content">
-            <img src="resource/upload/${dto.image}" alt="제보 이미지">
+            <img src="${pageContext.request.contextPath}/resource/upload/${dto.image}" alt="제보 이미지">
             <div class="info">
                 <p><span>추정 나이:</span> ${dto.age}세</p>
                 <p><span>추정 성별:</span> ${dto.gender}</p>

@@ -73,7 +73,7 @@
 <c:forEach var="dto" items="${witnessList}">
     <a href="witnessView.do?witnessSerialNum=${dto.witnessSerialNum}">
         <div class="card">
-            <img src="upload/${dto.image}" alt="목격 이미지">
+            <img src="${pageContext.request.contextPath}/resource/upload/${dto.image}" alt="목격 이미지">
             <div class="info">
                 <div><span>성별:</span> ${dto.gender}</div>
                 <div><span>나이:</span> ${dto.age}</div>
