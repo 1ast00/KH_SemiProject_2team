@@ -8,7 +8,7 @@ public interface MemberMapper {
 
 	MemberDTO memberLogin(Map<String, Object> map);
 
-	MemberDTO selectById(String memberId);
+	Integer selectById(String memberId);
 
 	int insertMember(MemberDTO dto);
 }

@@ -13,49 +13,51 @@ import view.ModelAndView;
 
 public class MemberRegisterController implements Controller {
 
-	@Override
-	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		String id = request.getParameter("member_id");
-		String pw = request.getParameter("member_pw");
-		String name = request.getParameter("member_name");
-		String phone = request.getParameter("member_phone");
-		String email = request.getParameter("member_email");
+    @Override
+    public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-		String adminSerialNum = "Admin";
+        String id = request.getParameter("member_id");
+        String pw = request.getParameter("member_pw");  
+        String name = request.getParameter("member_name");
+        String phone = request.getParameter("member_phone");
+        String email = request.getParameter("member_email");
 
-		String encPw = encryptSHA512(pw);
+        String admin_serialNum = "Admin";
 
-		MemberDTO dto = new MemberDTO();
-		dto.setId(id);
-		dto.setPw(encPw);
-		dto.setName(name);
-		dto.setPhone(phone);
-		dto.setEmail(email);
-		dto.setAdminSerialNum(adminSerialNum);
+       
+        String encPw = encryptSHA512(pw);
 
-		int result = MemberService.getInstance().insertMember(dto);
+        MemberDTO dto = new MemberDTO();
+        dto.setMember_id(id);
+        dto.setMember_pw(encPw);  
+        dto.setMember_name(name);
+        dto.setMember_phone(phone);
+        dto.setMember_email(email);
+        dto.setAdmin_serialNum(admin_serialNum);
 
-		System.out.println("회원가입 시도: id=" + id);
-		System.out.println("DB 저장 결과 (성공: 1 / 실패: 0) : " + result);
+        int result = MemberService.getInstance().insertMember(dto);
 
-		if (result > 0) {
-			return new ModelAndView("/memberLoginView.do", true);
-		} else {
-			request.setAttribute("msg", "회원 가입 실패");
-			return new ModelAndView("member_register.jsp", false);
-		}
-	}
+        System.out.println("회원가입 시도: id=" + id);
+        System.out.println("DB 저장 결과 (성공: 1 / 실패: 0) : " + result);
 
-	// 암호화
-	private String encryptSHA512(String pw) {
-		try {
-			MessageDigest md = MessageDigest.getInstance("SHA-512");
-			byte[] bytes = pw.getBytes(StandardCharsets.UTF_8);
-			byte[] hashedPw = md.digest(bytes);
-			return Base64.getEncoder().encodeToString(hashedPw);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
+        if (result > 0) {
+            return new ModelAndView("/memberLoginView.do", true);  
+        } else {
+            request.setAttribute("msg", "회원가입 실패. 다시 시도하세요.");
+            return new ModelAndView("member_register.jsp", false);   
+        }
+    }
+
+    
+    private String encryptSHA512(String pw) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-512");
+            byte[] bytes = pw.getBytes(StandardCharsets.UTF_8);
+            byte[] hashedPw = md.digest(bytes);
+            return Base64.getEncoder().encodeToString(hashedPw);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

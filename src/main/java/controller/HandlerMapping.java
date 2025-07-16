@@ -34,8 +34,8 @@ public class HandlerMapping {
 		case "memberMypageInfoView":
 			controller = new MemberMypageInfoView();
 			break;
-		case "checkMemberID":
-			controller = new CheckMemberIDController();
+		case "checkMemberId":
+			controller = new CheckMemberIdController();
 			break;
 		case "adminMain":
 			controller = new AdminMainController();

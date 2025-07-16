@@ -1,84 +1,83 @@
 package dto;
 
 public class MemberDTO {
-    private String memberSerialNum;   // 회원 고유번호
-    private String id;          // 아이디
-    private String pw;          // 비밀번호
-    private String name;        // 이름
-    private String email;       // 이메일 (nullable)
-    private String phone;       // 전화번호
-    
-    // 외래키
-    private String adminSerialNum;    // 소속 관리자 번호
+	private String member_serialNum;
+	private String member_id;
+	private String admin_serialNum;
+	private String member_pw;
+	private String member_email;
+	private String member_name;
+	private String member_phone;
 
-    // 기본 생성자
-    public MemberDTO() {}
+	public MemberDTO() {
+	}
 
-	public MemberDTO(String memberSerialNum, String id, String pw, String name, String email, String phone,
-			String adminSerialNum) {
+	public MemberDTO(String member_serialNum, String member_id, String admin_serialNum, String member_pw,
+			String member_email, String member_name, String member_phone) {
 		super();
-		this.memberSerialNum = memberSerialNum;
-		this.id = id;
-		this.pw = pw;
-		this.name = name;
-		this.email = email;
-		this.phone = phone;
-		this.adminSerialNum = adminSerialNum;
+		this.member_serialNum = member_serialNum;
+		this.member_id = member_id;
+		this.admin_serialNum = admin_serialNum;
+		this.member_pw = member_pw;
+		this.member_email = member_email;
+		this.member_name = member_name;
+		this.member_phone = member_phone;
 	}
 
-	public String getMemberSerialNum() {
-		return memberSerialNum;
+	public String getMember_serialNum() {
+		return member_serialNum;
 	}
 
-	public void setMemberSerialNum(String memberSerialNum) {
-		this.memberSerialNum = memberSerialNum;
+	public void setMember_serialNum(String member_serialNum) {
+		this.member_serialNum = member_serialNum;
 	}
 
-	public String getId() {
-		return id;
+	public String getMember_id() {
+		return member_id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
 
-	public String getPw() {
-		return pw;
+	public String getAdmin_serialNum() {
+		return admin_serialNum;
 	}
 
-	public void setPw(String pw) {
-		this.pw = pw;
+	public void setAdmin_serialNum(String admin_serialNum) {
+		this.admin_serialNum = admin_serialNum;
 	}
 
-	public String getName() {
-		return name;
+	public String getMember_pw() {
+		return member_pw;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setMember_pw(String member_pw) {
+		this.member_pw = member_pw;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getMember_email() {
+		return member_email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setMember_email(String member_email) {
+		this.member_email = member_email;
 	}
 
-	public String getPhone() {
-		return phone;
+	public String getMember_name() {
+		return member_name;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
 	}
 
-	public String getAdminSerialNum() {
-		return adminSerialNum;
+	public String getMember_phone() {
+		return member_phone;
 	}
 
-	public void setAdminSerialNum(String adminSerialNum) {
-		this.adminSerialNum = adminSerialNum;
+	public void setMember_phone(String member_phone) {
+		this.member_phone = member_phone;
 	}
+
 }

@@ -18,21 +18,20 @@
     <select id="memberLogin" parameterType="map" resultMap="memberResultMap">
         SELECT *
         FROM MEMBER_INFO
-        WHERE MEMBER_ID = TRIM(#{member_id})
-          AND MEMBER_PW = TRIM(#{member_pw})
+        WHERE MEMBER_ID = #{member_id}
+          AND MEMBER_PW = #{member_pw}
     </select>
 
-    <select id="selectById" parameterType="String" resultMap="memberResultMap">
-        SELECT *
-        FROM MEMBER_INFO
-        WHERE MEMBER_ID = TRIM(#{memberId})
-    </select>
+    <select id="selectById" parameterType="String" resultType="int">
+    SELECT COUNT(*)
+    FROM MEMBER_INFO
+    WHERE TRIM(MEMBER_ID) = #{memberId}
+</select>
 
     <insert id="insertMember" parameterType="dto.MemberDTO">
-        INSERT INTO MEMBER_INFO
-        (MEMBER_ID, ADMIN_SERIALNUM, MEMBER_PW, MEMBER_EMAIL, MEMBER_NAME, MEMBER_PHONE)
-        VALUES
-        (#{member_id}, #{admin_serialNum}, #{member_pw}, #{member_email}, #{member_name}, #{member_phone})
+    INSERT INTO MEMBER_INFO
+    (MEMBER_ID, MEMBER_PW, MEMBER_EMAIL, MEMBER_NAME, MEMBER_PHONE)
+    VALUES
+    (#{member_id}, #{member_pw}, #{member_email}, #{member_name}, #{member_phone})
     </insert>
-
 </mapper>

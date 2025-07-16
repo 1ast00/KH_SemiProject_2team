@@ -22,13 +22,12 @@
 				<button type="button" id="checkIdBtn" style="width: 100px;">중복
 					확인</button>
 			</div>
-			<span id="idCheckResult"></span> <input type="password"
-				name="member_pw" placeholder="비밀번호" required /> <input
-				type="password" name="member_pw_check" placeholder="비밀번호 확인"
-				required /> <input type="text" name="member_name" placeholder="이름"
-				required /> <input type="email" name="member_email"
-				placeholder="이메일 (선택)" /> <input type="text" name="member_phone"
-				placeholder="전화번호" required /> <input type="submit" value="회원가입" />
+			<span id="idCheckResult"></span> 
+			<input type="password" name="member_pw" placeholder="비밀번호" required /> 
+			<input type="password" name="member_pw_check" placeholder="비밀번호 확인" required /> 
+			<input type="text" name="member_name" placeholder="이름" required /> 
+			<input type="email" name="member_email" placeholder="이메일 (선택)" /> 
+			<input type="text" name="member_phone" placeholder="전화번호" required /> <input type="submit" value="회원가입" />
 		</form>
 	</div>
 

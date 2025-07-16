@@ -126,6 +126,7 @@ h2 {
 </style>
 </head>
 <body>
+<jsp:include page="./template/header.jsp" />
 	<h2>목격자 제보 목록</h2>
 
 	<div class="search-box">
