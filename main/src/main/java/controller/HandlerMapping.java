@@ -64,6 +64,10 @@ public class HandlerMapping {
 		case "missingMapSearch":
 			controller = new MissingMapSearchController();
 			break;
+		case "missingInsert":
+		    controller = new MissingInsertController();
+		    break;
+
 		case "missingDelete":
 			controller = new MissingDeleteController();
 			break;
