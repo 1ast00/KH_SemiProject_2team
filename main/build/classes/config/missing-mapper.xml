@@ -41,12 +41,20 @@
 		)
 	</insert>
 
-	<select id="selectMissingList" resultMap="missing">
-		SELECT * FROM missing_info
-		ORDER BY missing_serialNum DESC
+	<select id="selectMissingList" parameterType="map" resultMap="missing">
+		SELECT * FROM (
+			SELECT ROWNUM AS rnum, m.* FROM (
+				SELECT * FROM missing_info ORDER BY missing_serialNum DESC
+			) m
+		) WHERE rnum BETWEEN #{startRow} AND #{endRow}
 	</select>
 
-	<!-- 추가된 부분: 회원 번호로 관리자 번호를 조회하는 쿼리 -->
+	<!-- 데이터베이스에 등록 된 전체 실종자 정보 세기(페이징때문에 추가) -->
+	<select id="selectMissingCount" resultType="int">
+		SELECT COUNT(*) FROM missing_info
+	</select>
+	
+	<!-- 회원번호로 관리자 번호 조회 -->
 	<select id="selectAdminSerialNumByMember" parameterType="string"
 		resultType="string">
 		SELECT admin_serialNum FROM member_info WHERE member_serialNum =
