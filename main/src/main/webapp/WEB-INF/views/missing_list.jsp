@@ -4,61 +4,70 @@
 <html>
 <head>
     <title>다시, 봄 - 실종자 목록</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/missing_list.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/template/header.jsp" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/missing_list.css">
 <div class="container">
-
     <main>
         <h2>실종자 목록</h2>
-	
-        <div class="search-box">
-            <input type="text" placeholder="이름">
-            <input type="text" placeholder="나이">
-            <input type="text" placeholder="성별">
-            <input type="text" placeholder="실종 위치">
-            <input type="text" placeholder="기타">
-            <button type="submit">🔍</button>
-        </div>
 
         <div class="person-grid">
             <c:forEach var="person" items="${missingList}">
-                <div class="person-card">
-                    <div class="card-image">
-                        <c:choose>
-                            <c:when test="${not empty person.image}">
-                                <img src="${pageContext.request.contextPath}/uploads/${person.image}" alt="${person.name} 이미지">
-                            </c:when>
-                            <c:otherwise>
-                                <img src="${pageContext.request.contextPath}/resource/images/default_avatar.png" alt="기본 이미지">
-                            </c:otherwise>
-                        </c:choose>
-                    </div>
-                    <div class="card-details">
-                        <p><strong>이름:</strong> ${person.name}</p>
-                        <p><strong>성별:</strong> ${person.gender == 'M' ? '남' : '여'}</p>
-                        <p><strong>생년월일:</strong> ${person.birth}</p>
-                        <p><strong>기타 특징:</strong> ${person.etc}</p>
-                        <p><strong>마지막 목격장소:</strong> ${person.place}</p>
+                <a href="${pageContext.request.contextPath}/missingView.do?missingSerialNum=${person.missingSerialNum}" class="person-card-link">
+                    <div class="person-card">
+                        <div class="card-image">
+                            <c:choose>
+                                <c:when test="${not empty person.image}">
+                                    <img src="${pageContext.request.contextPath}/uploads/${person.image}" alt="${person.name} 이미지">
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="${pageContext.request.contextPath}/resource/images/default_avatar.png" alt="기본 이미지">
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                        <div class="card-details">
+                            <p><strong>이름:</strong> ${person.name}</p>
+                            <p><strong>성별:</strong> ${person.gender == 'M' ? '남' : '여'}</p>
+                            <p><strong>생년월일:</strong> ${person.birth}</p>
+                            <p><strong>기타 특징:</strong> ${person.etc}</p>
+                            <p><strong>마지막 목격장소:</strong> ${person.place}</p>
 
-                        <!-- 삭제 버튼 (관리자 or 작성자만 표시) -->
-                        <c:if test="${sessionScope.loginRole eq 'admin'}">
-                            <form action="${pageContext.request.contextPath}/missingDelete.do" method="post" style="display:inline;">
-                                <input type="hidden" name="missingSerialNum" value="${person.missingSerialNum}" />
-                                <button type="submit" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button>
-                            </form>
-                        </c:if>
-
-                        <c:if test="${sessionScope.loginRole eq 'member' and sessionScope.loginSerialNum eq person.memberSerialNum}">
-                            <form action="${pageContext.request.contextPath}/missingDelete.do" method="post" style="display:inline;">
-                                <input type="hidden" name="missingSerialNum" value="${person.missingSerialNum}" />
-                                <button type="submit" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button>
-                            </form>
-                        </c:if>
+                            <c:if test="${sessionScope.loginRole eq 'admin' or (sessionScope.loginRole eq 'member' and sessionScope.loginSerialNum eq person.memberSerialNum)}">
+                                <form action="${pageContext.request.contextPath}/missingDelete.do" method="post" style="display:inline;" onclick="event.stopPropagation();">
+                                    <input type="hidden" name="missingSerialNum" value="${person.missingSerialNum}" />
+                                    <button type="submit" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button>
+                                </form>
+                            </c:if>
+                        </div>
                     </div>
-                </div>
+                </a>
             </c:forEach>
+        </div>
+
+        <div class="pagination">
+            <%-- 이전 버튼 --%>
+            <c:if test="${paging.prev}">
+                <a href="missingList.do?page=${paging.startPage - 1}">&laquo; 이전</a>
+                									   		     <%-- &laquo;는 엔티티 임(화살표모양) --%>
+            </c:if>
+
+            <%-- 페이지 번호 목록 --%>
+            <c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
+                <c:choose>
+                    <c:when test="${num == paging.page}">
+                        <span class="active">${num}</span>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="missingList.do?page=${num}">${num}</a>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+
+            <%-- 다음 버튼 --%>
+            <c:if test="${paging.next}">
+                <a href="missingList.do?page=${paging.endPage + 1}">다음 &raquo;</a>
+            </c:if>
         </div>
     </main>
 </div>
