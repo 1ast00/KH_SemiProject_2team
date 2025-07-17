@@ -1,6 +1,7 @@
 package service;
 
 import java.util.List;
+import java.util.Map; // Map import 추가
 import config.DBManager;
 import dto.MissingPersonDTO;
 import mapper.MissingMapper;
@@ -24,8 +25,14 @@ public class MissingService {
         return instance;
     }
 
-    public List<MissingPersonDTO> selectMissingList() {
-        return mapper.selectMissingList();
+    // 페이징 파라미터를 받는 메소드로 변경
+    public List<MissingPersonDTO> selectMissingList(Map<String, Object> params) {
+        return mapper.selectMissingList(params);
+    }
+    
+    // 전체 카운트를 위한 서비스 메소드 추가
+    public int getMissingCount() {
+        return mapper.selectMissingCount();
     }
 
     public int insertMissingPerson(MissingPersonDTO person) {
