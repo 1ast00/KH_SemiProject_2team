@@ -16,4 +16,7 @@ public interface MissingMapper {
 	String selectAdminSerialNumByMember(String memberSerialNum);
 
 	int deleteMissingPerson(String missingSerialNum);
+
+	// 조회 
+	MissingPersonDTO selectMissingPersonBySerialNum(String serialNum);
 }
