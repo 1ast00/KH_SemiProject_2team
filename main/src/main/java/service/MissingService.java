@@ -61,4 +61,8 @@ public class MissingService {
     public int deleteMissingPerson(String missingSerialNum) {
         return mapper.deleteMissingPerson(missingSerialNum);
     }
+
+	public MissingPersonDTO getMissingPersonBySerialNum(String serialNum) {
+		return mapper.selectMissingPersonBySerialNum(serialNum);
+	}
 }
