@@ -11,7 +11,8 @@
 		<h1 id="formTitle">실종자 접수</h1>
 	</header>
 	<main>
-		<form id="missingPersonForm" action="missingView.do" method="post" enctype="multipart/form-data">
+											<!-- missingView에서 missingInsert.do로 수정 -->
+		<form id="missingPersonForm" action="missingInsert.do" method="post" enctype="multipart/form-data">
 			<div class="form_group">
 				<label for="missingName">이름:</label>
 				<input type="text" id="missingName" name="missingName" value="${param.missingName}" required />
