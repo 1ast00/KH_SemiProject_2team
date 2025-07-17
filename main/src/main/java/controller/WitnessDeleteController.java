@@ -14,9 +14,9 @@ public class WitnessDeleteController implements Controller {
         if (serialNum != null && !serialNum.trim().isEmpty()) {
             boolean result = WitnessService.getInstance().deleteWitness(serialNum);
             if (result) {
-                System.out.println("✔ 삭제 성공: " + serialNum);
+                System.out.println("삭제 성공: " + serialNum);
             } else {
-                System.out.println("⚠ 삭제 실패: " + serialNum);
+                System.out.println("삭제 실패: " + serialNum);
             }
         }
         System.out.println("삭제 시도 witnessSerialNum = " + serialNum);

@@ -44,26 +44,46 @@
 	<select id="selectMissingList" parameterType="map" resultMap="missing">
 		SELECT * FROM (
 			SELECT ROWNUM AS rnum, m.* FROM (
-				SELECT * FROM missing_info ORDER BY missing_serialNum DESC
+				SELECT 
+					missing_serialNum,
+					member_serialNum,
+					admin_serialNum,
+					missing_name,
+					missing_gender,
+					TO_CHAR(TO_DATE(missing_birth, 'YYYYMMDD'), 'YYYY-MM-DD') as missing_birth,
+					missing_etc,
+					missing_place,
+					TO_CHAR(missing_date, 'YYYY-MM-DD') as missing_date,
+					missing_img
+				FROM missing_info ORDER BY missing_serialNum DESC
 			) m
 		) WHERE rnum BETWEEN #{startRow} AND #{endRow}
 	</select>
 
-	<!-- 데이터베이스에 등록 된 전체 실종자 정보 세기(페이징때문에 추가) -->
 	<select id="selectMissingCount" resultType="int">
 		SELECT COUNT(*) FROM missing_info
 	</select>
 	
-	<!-- 회원번호로 관리자 번호 조회 -->
 	<select id="selectAdminSerialNumByMember" parameterType="string"
 		resultType="string">
 		SELECT admin_serialNum FROM member_info WHERE member_serialNum =
 		#{memberSerialNum}
 	</select>
 	
-	<!-- 쿼리 추가(insert랑 view 컨트롤러 나눌 때 추가한거임) -->
-	<select id="selectMissingPersonBySerialNum" parameterType="String" resultType="dto.MissingPersonDTO">
-    SELECT * FROM missing_info WHERE missing_serial_num = #{serialNum}
+	<select id="selectMissingPersonBySerialNum" parameterType="String" resultMap="missing">
+	    SELECT 
+	        missing_serialNum,
+	        member_serialNum,
+	        admin_serialNum,
+	        missing_name,
+	        missing_gender,
+	        TO_CHAR(TO_DATE(missing_birth, 'YYYYMMDD'), 'YYYY-MM-DD') as missing_birth,
+	        missing_etc,
+	        missing_place,
+	        TO_CHAR(missing_date, 'YYYY-MM-DD') as missing_date,
+	        missing_img
+	    FROM missing_info 
+	    WHERE missing_serialNum = #{serialNum}
 	</select>
 
 	<delete id="deleteMissingPerson" parameterType="string">
