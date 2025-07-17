@@ -60,6 +60,11 @@
 		SELECT admin_serialNum FROM member_info WHERE member_serialNum =
 		#{memberSerialNum}
 	</select>
+	
+	<!-- 쿼리 추가(insert랑 view 컨트롤러 나눌 때 추가한거임) -->
+	<select id="selectMissingPersonBySerialNum" parameterType="String" resultType="dto.MissingPersonDTO">
+    SELECT * FROM missing_info WHERE missing_serial_num = #{serialNum}
+	</select>
 
 	<delete id="deleteMissingPerson" parameterType="string">
 		DELETE FROM missing_info WHERE missing_serialNum = #{missingSerialNum}
