@@ -80,21 +80,58 @@ body {
 }
 
 /* 성별 라디오 버튼 그룹 스타일 */
+/* ㅜㅜㄴ */
 .gender-radio-group {
-    flex: 1; /* 다른 입력 필드와 동일하게 공간 차지 */
+    flex: 1;
     display: flex;
-    justify-content: center; /* 라디오 버튼 중앙 정렬 */
+    justify-content: center; /* 내부 요소를 가운데 정렬 */
     align-items: center;
-    height: 40px; /* 입력 필드와 동일한 높이 */
-    border-right: 1px solid #eee; /* 구분선 추가 */
+    height: 40px;
+    border-right: 1px solid #eee;
     box-sizing: border-box;
-    padding: 0 15px; /* 좌우 패딩 */
-    min-width: 100px; /* 최소 너비 80->100 */
+    padding: 0 10px; /* 좌우 패딩을 줄여서 전체 너비를 맞춥니다. */
+    min-width: 120px; /* '성별 남 여' 텍스트와 라디오 버튼이 충분히 들어갈 공간 확보 */
+}
+
+.gender-radio-group span { /* '성별' 텍스트를 위한 스타일 추가 */
+    margin-right: 8px; /* '성별' 텍스트와 라디오 버튼 사이 간격 */
+    font-size: 1em; /* 다른 input placeholder와 비슷한 크기 */
+    color: #555; /* 색상 조정 */
+    white-space: nowrap;
 }
 
 .gender-radio-group label {
-    margin: 0 5px; /* 라디오 버튼 간 간격 */
-    white-space: nowrap; /* 줄바꿈 방지 */
+    margin: 0 4px; /* '남', '여' 텍스트와 라디오 버튼 간 간격 */
+    display: flex; /* 라디오 버튼과 텍스트를 나란히 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    white-space: nowrap;
+    font-size: 0.95em; /* '남', '여' 텍스트 크기 */
+}
+
+.gender-radio-group input[type="radio"] {
+    /* 라디오 버튼 자체의 크기를 직접 조절 */
+    width: 16px;  /* 표준적인 라디오 버튼 크기 */
+    height: 16px; /* 표준적인 라디오 버튼 크기 */
+    margin-right: 4px; /* 라디오 버튼과 텍스트 사이 간격 */
+    /* 필요하다면 appearance 속성으로 기본 브라우저 스타일 제거 후 커스텀 스타일링 가능 */
+    -webkit-appearance: none; /* 웹킷 브라우저 기본 스타일 제거 */
+    -moz-appearance: none;    /* 모질라 브라우저 기본 스타일 제거 */
+    appearance: none;         /* 기본 스타일 제거 */
+    border: 1px solid #ccc;   /* 테두리 */
+    border-radius: 50%;       /* 원형 */
+    outline: none;            /* 포커스 시 아웃라인 제거 */
+    cursor: pointer;          /* 마우스 오버 시 커서 변경 */
+    transition: background-color 0.2s, border-color 0.2s; /* 부드러운 전환 효과 */
+}
+
+.gender-radio-group input[type="radio"]:checked {
+    background-color: #FFC0CB; /* 선택 시 내부 원형 색상 (핑크색) */
+    border-color: #FF69B4;     /* 선택 시 테두리 색상 (진한 핑크) */
+}
+
+/* 포커스 시 스타일 */
+.gender-radio-group input[type="radio"]:focus {
+    box-shadow: 0 0 0 2px rgba(255, 105, 180, 0.3); /* 포커스 시 그림자 */
 }
 
 /* 마지막 input의 오른쪽 테두리 제거 */
