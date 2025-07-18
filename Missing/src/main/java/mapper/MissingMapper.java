@@ -19,4 +19,7 @@ public interface MissingMapper {
 
 	// 조회 
 	MissingPersonDTO selectMissingPersonBySerialNum(String serialNum);
+	
+	// 업데이트
+	int updateMissingPerson(MissingPersonDTO person);
 }
