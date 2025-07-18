@@ -40,6 +40,22 @@
 		#{image}
 		)
 	</insert>
+	
+	<!-- 수정(업데이트) 쿼리 추가 -->
+	<update id="updateMissingPerson" parameterType="dto.MissingPersonDTO">
+    UPDATE missing_info
+       SET missing_name = #{name},
+           missing_gender = #{gender},
+           missing_birth = TO_NUMBER(REPLACE(#{birth}, '-', '')),
+           missing_etc = #{etc},
+           missing_place = #{place},
+           missing_date = TO_DATE(#{missingDate}, 'YYYY-MM-DD')
+           <!-- 새 이미지파일이 업로드될때만 MISSING_IMG 컬럼 업데이트 -->
+           <if test="image != null">
+           , missing_img = #{image}
+           </if>
+     WHERE missing_serialNum = #{missingSerialNum}
+	</update>
 
 	<select id="selectMissingList" parameterType="map" resultMap="missing">
 		SELECT * FROM (
