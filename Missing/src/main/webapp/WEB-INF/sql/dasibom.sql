@@ -242,5 +242,6 @@ INSERT INTO witness_info (member_serialNum, admin_serialNum, witness_date, witne
 VALUES ('MM10000002', 'AA10000002', DATE '2025-07-15', 'KH정보교육원 당산점1', 'F', '21', '키가 170대 후반');
 SELECT * FROM witness_info; 
 
+SELECT * FROM missing_info ORDER BY missing_serialNum DESC;
 
 commit;
