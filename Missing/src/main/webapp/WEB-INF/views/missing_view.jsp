@@ -54,6 +54,20 @@
 		<form action="missingList.do" method="get" style="display:inline;">
 			<button type="submit">실종자 목록 보기</button>
 		</form>
+		<!-- 수정하기 추가 -->
+		<c:if test="${sessionScope.loginRole eq 'admin' or (sessionScope.loginRole eq 'member' and sessionScope.loginSerialNum eq missingPerson.memberSerialNum)}">
+    		<form action="missingUpdateView.do" method="get" style="display:inline;">
+        		<input type="hidden" name="missingSerialNum" value="${missingPerson.missingSerialNum}" />
+        		<button type="submit">수정하기</button>
+    		</form>
+		</c:if>
 	</div>
+		<!-- 삭제 버튼 옮겨옴 -->
+		<c:if test="${sessionScope.loginRole eq 'admin' or (sessionScope.loginRole eq 'member' and sessionScope.loginSerialNum eq missingPerson.memberSerialNum)}">
+			<form action="${pageContext.request.contextPath}/missingDelete.do" method="post" style="display:inline;">
+				<input type="hidden" name="missingSerialNum" value="${missingPerson.missingSerialNum}" />
+				<button type="submit" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button>
+			</form>
+		</c:if>
 </body>
 </html>
