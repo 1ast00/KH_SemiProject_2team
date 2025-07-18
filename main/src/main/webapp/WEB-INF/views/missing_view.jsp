@@ -49,7 +49,8 @@
 
 	<div class="button-group">
 		<a href="missingInsertView.do">새로 접수하기</a> 
-		<a href="#">제보하기</a>
+		<!-- 목격자 제보 페이지로 연결 -->
+		<a href="witnessInsert.do">제보 하기</a>
 		<form action="missingList.do" method="get" style="display:inline;">
 			<button type="submit">실종자 목록 보기</button>
 		</form>
