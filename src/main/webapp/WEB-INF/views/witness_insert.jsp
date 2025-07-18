@@ -4,90 +4,8 @@
 <head>
 <meta charset="UTF-8">
 <title>목격자 제보</title>
-<style>
-    body {
-        background-color: #fafafa;
-        margin: 0;
-        padding: 0;
-    }
-
-    .report-container {
-        width: 500px;
-        margin: 50px auto;
-        background-color: #fff;
-        border: 2px solid #f7b9cf;
-        border-radius: 10px;
-        padding: 40px;
-    }
-
-    h2 {
-        text-align: center;
-        color: #cc0066;
-        margin-bottom: 30px;
-    }
-
-    form {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    label {
-        font-weight: bold;
-        color: #444;
-        margin-bottom: 5px;
-    }
-
-    input[type="text"],
-    input[type="number"],
-    input[type="date"],
-    select,
-    textarea {
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        font-size: 15px;
-    }
-
-    input[type="file"] {
-        margin-top: 5px;
-    }
-
-    .btn-box {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-        gap: 10px;
-    }
-
-    .btn {
-        padding: 8px 20px;
-        border-radius: 20px;
-        border: none;
-        font-weight: bold;
-        cursor: pointer;
-        transition: 0.2s;
-    }
-
-    .btn-submit {
-        background-color: #ff7cb3;
-        color: white;
-    }
-
-    .btn-cancel {
-        background-color: #eee;
-        color: #333;
-    }
-
-    .btn:hover {
-        opacity: 0.9;
-    }
-
-    .file-note {
-        font-size: 12px;
-        color: #999;
-    }
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resource/css/witness_insert.css">
+<jsp:include page="./template/header.jsp" />
 </head>
 <body>
 <div class="report-container">
@@ -138,7 +56,7 @@
 
         <div class="btn-box">
             <button type="submit" class="btn btn-submit">등록</button>
-            <button type="reset" class="btn btn-cancel">취소</button>
+            <button type="button" onclick="history.back()" class="btn btn-cancel">취소</button>
         </div>
     </form>
 </div>

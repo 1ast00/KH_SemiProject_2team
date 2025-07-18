@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -144,26 +145,48 @@ a {
 		</div>
 		<nav class="main-nav">
 			<ul>
-				<li class="has-dropdown"><a href="${pageContext.request.contextPath}/main.do">실종 정보</a>
+				<li class="has-dropdown"><a
+					href="${pageContext.request.contextPath}/main.do">실종 정보</a>
 					<ul class="dropdown-menu">
-						<li><a href="${pageContext.request.contextPath}/missingInsertView.do">실종자 제보</a></li>
-						<li><a href="${pageContext.request.contextPath}/missingList.do">실종자 목록 조회</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/missingInsertView.do">실종자
+								제보</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/missingList.do">실종자
+								목록 조회</a></li>
 					</ul></li>
 				<li class="has-dropdown"><a href="#">목격 정보</a>
 					<ul class="dropdown-menu">
-						<li><a href="${pageContext.request.contextPath}/witnessInsertView.do">목격자 제보</a></li>
-						<li><a href="${pageContext.request.contextPath}/witnessList.do">목격정보 목록 조회</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/witnessInsertView.do">목격자
+								제보</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/witnessList.do">목격정보
+								목록 조회</a></li>
 					</ul></li>
 				<li class="has-dropdown"><a href="/notice">공지사항</a>
 					<ul class="dropdown-menu">
 						<li><a href="/notice">공지사항</a></li>
 						<li><a href="/legal-info">법률 정보</a></li>
 					</ul></li>
-				<li class="has-dropdown"><a href="/mypage">마이 페이지</a>
+
+				<li class="has-dropdown"><a href="#">마이 페이지</a>
 					<ul class="dropdown-menu">
-						<li><a href="memberRegisterView.do">회원가입</a></li>
-						<li><a href="memberLoginView.do">로그인</a></li>
-						<li><a href="memberMypageInfoView.do">마이 페이지</a></li>
+						<c:choose>
+							<c:when test="${sessionScope.member == null }">
+								<li><a
+									href="${pageContext.request.contextPath}/memberRegisterView.do">회원가입</a></li>
+								<li><a
+									href="${pageContext.request.contextPath}/memberLoginView.do">로그인</a></li>
+   							 </c:when>
+    						<c:otherwise>
+								<li><a
+									href="${pageContext.request.contextPath}/memberLogout.do">로그아웃</a></li>
+								<li><a
+									href="${pageContext.request.contextPath}/memberMypageInfoView.do">마이
+										페이지</a></li>
+    						</c:otherwise>
+						</c:choose>
 					</ul></li>
 			</ul>
 		</nav>

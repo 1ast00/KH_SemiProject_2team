@@ -10,6 +10,8 @@ public class WitnessDTO {
 	private Integer age;
 	private String etc;
 	private String image;
+	
+	// 외래키
 	private String memberSerialNum;
 	private String missingSerialNum;
 

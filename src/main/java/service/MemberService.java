@@ -1,6 +1,7 @@
 package service;
 
 import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import config.DBManager;
 import dto.MemberDTO;
@@ -41,9 +42,40 @@ public class MemberService {
         SqlSession session = DBManager.getInstance().getSession();
         MemberMapper mapper = session.getMapper(MemberMapper.class);
 
-        int count = mapper.selectById(memberId);  
+        int count = mapper.selectById(memberId);
         session.close();
 
-        return count >= 1;  
+        return count >= 1;
+    }
+
+    public String findId(MemberDTO dto) {
+        SqlSession session = DBManager.getInstance().getSession();
+        MemberMapper mapper = session.getMapper(MemberMapper.class);
+
+        String foundId = mapper.findId(dto);
+
+        session.close();
+        return foundId;
+    }
+
+    public boolean verifyForPw(MemberDTO dto) {
+        SqlSession session = DBManager.getInstance().getSession();
+        MemberMapper mapper = session.getMapper(MemberMapper.class);
+
+        int count = mapper.countByIdEmail(dto);
+
+        session.close();
+        return count == 1;
+    }
+
+    public int resetPassword(MemberDTO dto) {
+        SqlSession session = DBManager.getInstance().getSession();
+        MemberMapper mapper = session.getMapper(MemberMapper.class);
+
+        int result = mapper.updatePassword(dto);
+
+        session.commit();
+        session.close();
+        return result;
     }
 }

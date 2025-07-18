@@ -80,4 +80,10 @@ public class MemberDTO {
 		this.member_phone = member_phone;
 	}
 
+	@Override
+	public String toString() {
+		return "MemberDTO [member_serialNum=" + member_serialNum + ", member_id=" + member_id + ", admin_serialNum="
+				+ admin_serialNum + ", member_pw=" + member_pw + ", member_email=" + member_email + ", member_name="
+				+ member_name + ", member_phone=" + member_phone + "]";
+	}
 }

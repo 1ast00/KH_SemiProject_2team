@@ -10,7 +10,7 @@ import service.WitnessService;
 import view.ModelAndView;
 
 public class WitnessListController implements Controller {
-	private static final int PAGE_SIZE = 6;
+	private static final int PAGE_SIZE = 8;
 
 	@Override
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws IOException {

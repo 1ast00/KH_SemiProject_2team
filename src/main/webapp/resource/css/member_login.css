@@ -3,14 +3,17 @@
 body {
 	margin: 0;
 	font-family: 'Noto Sans KR', sans-serif;
-	background-color: #fff;
+	background: linear-gradient(135deg, #ffe8ec, #ffffff);
 }
 
 .container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding-top: 40px;
+	padding: 40px 20px;
+	width: 100%;
+	max-width: none;
+	margin: 0 auto;
 }
 
 .logo {
@@ -27,17 +30,33 @@ body {
 	font-size: 24px;
 	color: #333;
 	line-height: 1.4;
+	animation: fadeIn 1.5s ease forwards;
 }
 
+@keyframes fadeIn {
+	from { 
+		opacity:0;
+		transform: translateY(10px);
+}
+
+to {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+}
 .login-box {
 	margin-top: 30px;
 	background-color: #ffeaea;
 	padding: 40px 30px;
 	border-radius: 8px;
-	width: 320px;
+	width: 90%;
+	max-width: 400px;
+	min-width: 300px;
 	display: flex;
 	flex-direction: column;
 	gap: 15px;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .login-box input {
@@ -45,6 +64,11 @@ body {
 	border: 1px solid #ccc;
 	border-radius: 6px;
 	font-size: 14px;
+}
+
+.login-box input, .login-box .login-btn, .login-box .join-btn {
+	width: 100%;
+	box-sizing: border-box;
 }
 
 .login-btn, .join-btn {
@@ -55,14 +79,60 @@ body {
 	background-color: #f99db5;
 	color: #fff;
 	cursor: pointer;
+	transition: all 0.2s ease;
 }
 
 .login-btn:hover, .join-btn:hover {
 	background-color: #f07fa1;
+	transform: translateY(-2px);
 }
 
 .error-msg {
 	margin-top: 15px;
 	color: red;
 	font-size: 14px;
+}
+
+.social-icon {
+	width: 18px;
+	height: 18px;
+	object-fit: contain;
+	margin-right: 8px;
+	pointer-events: none;
+}
+
+.kakao-btn {
+	background-color: #FFE812;
+	color: #000;
+	margin-bottom: 10px;
+}
+
+.naver-btn {
+	background-color: #03C75A;
+	color: #fff;
+}
+
+.social-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px 24px;
+	border: none;
+	border-radius: 5px;
+	font-weight: bold;
+	cursor: pointer;
+	box-sizing: border-box;
+}
+
+.login-box input[type="checkbox"] {
+	width: auto;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 8px;
+}
+
+.login-box label[for="togglePassword"] {
+	display: block;
+	font-size: 0.85em;
+	margin: 5px 0 0;
 }

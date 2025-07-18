@@ -25,6 +25,18 @@ public class HandlerMapping {
 		case "memberLogin":
 			controller = new MemberLoginController();
 			break;
+		case "socialLogin":
+            controller = new SocialLoginController();
+            break;
+		case "naverCallback":
+            controller = new NaverCallbackController();
+            break;
+        case "kakaoCallback":
+            controller = new KakaoCallbackController();
+            break;
+		case "memberLogout":
+			controller = new MemberLogoutController();
+			break;
 		case "memberRegisterView":
 			controller = new MemberRegisterViewController();
 			break;
@@ -52,6 +64,9 @@ public class HandlerMapping {
 		case "adminRegisterView":
 			controller = new AdminRegisterViewController();
 			break;
+		case "missingInsert":
+		    controller = new MissingInsertController();
+		    break;
 		case "missingInsertView":
 			controller = new MissingInsertViewController();
 			break;
@@ -67,9 +82,6 @@ public class HandlerMapping {
 		case "missingDelete":
 			controller = new MissingDeleteController();
 			break;
-		case "witnessMapSearch":
-			controller = new WitnessMapSearchController();
-			break;
 		case "witnessInsertView":
 			controller = new WitnessInsertViewController();
 			break;	
@@ -84,6 +96,9 @@ public class HandlerMapping {
 			break;
 		case "witnessDelete" :
 			controller = new WitnessDeleteController();
+			break;
+		case "img/witness" :
+			controller = new WitnessImageController();
 			break;
 		}
 		return controller;

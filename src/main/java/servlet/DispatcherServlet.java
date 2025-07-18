@@ -15,40 +15,50 @@ import controller.HandlerMapping;
 
 @WebServlet("*.do")
 @MultipartConfig(
-		fileSizeThreshold = 1024 * 1024 * 2, 
-		maxFileSize = 1024 * 1024 * 10, maxRequestSize = 1024 * 1024 * 50)
+    fileSizeThreshold = 1024 * 1024 * 2,
+    maxFileSize = 1024 * 1024 * 10,
+    maxRequestSize = 1024 * 1024 * 50
+)
 public class DispatcherServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private String rootPath = "/WEB-INF/views/";
+    private static final long serialVersionUID = 1L;
+    private String rootPath = "/WEB-INF/views/";
 
-	public DispatcherServlet() {
-	}
+    public DispatcherServlet() {
+    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// 사용자가 요청한 경로
-		int n = request.getRequestURI().lastIndexOf("/");
-		String command = request.getRequestURI().substring(n + 1).replace(".do", "");
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-		// 요청 전달
-		Controller controller = HandlerMapping.getInstance().createController(command);
-		ModelAndView view = null;
+        // 요청 경로 추출 예: /KH_SemiProject_2team/img/witness.do
+        String uri = request.getRequestURI();             // 전체 요청 URI
+        String context = request.getContextPath();        // /KH_SemiProject_2team
+        String command = uri.substring(context.length() + 1).replace(".do", ""); // 예: img/witness
 
-		if (controller != null)
-			view = controller.execute(request, response);
+        // 로그로 확인
+        System.out.println("🔗 Dispatcher command: " + command);
 
-		// 페이지 이동처리
-		if (view != null) {
-			if (view.isRedirect()) {
-				response.sendRedirect(request.getContextPath() + view.getPath());
-			} else {
-				request.getRequestDispatcher(rootPath + view.getPath()).forward(request, response);
-			}
-		}
-	}
+        // Controller 생성
+        Controller controller = HandlerMapping.getInstance().createController(command);
+        ModelAndView view = null;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request, response);
-	}
+        if (controller != null) {
+            view = controller.execute(request, response);
+        }
+
+        // 뷰 이동 처리
+        if (view != null) {
+            if (view.isRedirect()) {
+                response.sendRedirect(view.getPath());
+            } else {
+                request.getRequestDispatcher(rootPath + view.getPath()).forward(request, response);
+            }
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doGet(request, response);
+    }
 }

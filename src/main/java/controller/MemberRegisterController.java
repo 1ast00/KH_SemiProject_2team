@@ -23,32 +23,39 @@ public class MemberRegisterController implements Controller {
         String email = request.getParameter("member_email");
 
         String admin_serialNum = "Admin";
-
-       
         String encPw = encryptSHA512(pw);
 
         MemberDTO dto = new MemberDTO();
         dto.setMember_id(id);
-        dto.setMember_pw(encPw);  
+        dto.setMember_pw(encPw);
         dto.setMember_name(name);
         dto.setMember_phone(phone);
         dto.setMember_email(email);
         dto.setAdmin_serialNum(admin_serialNum);
 
+        
+        boolean isDuplicate = MemberService.getInstance().isMemberIdDuplicate(id);
+        if (isDuplicate) {
+            
+            response.setContentType("text/html;charset=UTF-8");
+            response.getWriter().println("<script>");
+            response.getWriter().println("alert('이미 사용중인 아이디입니다.');");
+            response.getWriter().println("history.back();");
+            response.getWriter().println("</script>");
+            return null;
+        }
+
+       
         int result = MemberService.getInstance().insertMember(dto);
 
-        System.out.println("회원가입 시도: id=" + id);
-        System.out.println("DB 저장 결과 (성공: 1 / 실패: 0) : " + result);
-
         if (result > 0) {
-            return new ModelAndView("/memberLoginView.do", true);  
+            return new ModelAndView("/memberLoginView.do", true);
         } else {
             request.setAttribute("msg", "회원가입 실패. 다시 시도하세요.");
-            return new ModelAndView("member_register.jsp", false);   
+            return new ModelAndView("member_register.jsp", false);
         }
     }
 
-    
     private String encryptSHA512(String pw) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-512");

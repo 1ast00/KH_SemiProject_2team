@@ -18,8 +18,9 @@
 		<div class="image-box">
 			<c:choose>
 				<c:when test="${not empty missingPerson.image}">
-					<!-- 이미지는 'contextPath/uploads/파일명' 형태로 접근 -->
-					<img src="${pageContext.request.contextPath}/uploads/${missingPerson.image}" alt="실종자 이미지">
+					<!-- 이미지는 'contextPath/uploads/파일명' 형태로 접근 / 없을 경우 대체 이미지 -->
+					<img src="${pageContext.request.contextPath}/uploads/${missingPerson.image}"  alt="${missingPerson.name}" 
+    							onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resource/img/default.jpg';">
 				</c:when>
 				<c:otherwise>
 					<p><strong>이미지 없음</strong></p>

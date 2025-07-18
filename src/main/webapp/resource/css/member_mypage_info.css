@@ -129,6 +129,13 @@ body {
 	margin-bottom: 20px;
 }
 
+input[readonly] {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  box-shadow: none;
+}
+
 .profile-details {
 	border-top: 1px solid #dee2e6;
 	padding-top: 20px;
