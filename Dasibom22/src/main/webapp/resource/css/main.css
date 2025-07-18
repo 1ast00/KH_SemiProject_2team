@@ -1,0 +1,275 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #f4f4f4;
+	color: #333;
+}
+
+/* 검색 영역 */
+.search-section {
+	padding: 40px 20px;
+	background-color: #f4f4f4;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start; /* 상단 정렬 */
+	min-height: 150px; /* 최소 높이 설정 (검색창 확장 대비) */
+}
+
+.search-input-container {
+	position: relative; /* 자식 요소 위치 지정을 위해 */
+	width: 60%; /* 검색 입력칸 너비 */
+	max-width: 700px;
+	display: flex; /* 기본 검색창과 버튼을 가로로 배치 */
+	align-items: center;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#mainSearchInput {
+	flex-grow: 1; /* 남은 공간을 채우도록 확장 */
+	padding: 12px 15px;
+	border: none;
+	outline: none;
+	font-size: 1.1em;
+}
+
+#searchButton {
+	background-color: transparent; /* 배경색 없음 */
+	border: none;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+
+#searchButton img {
+	width: 24px; /* 검색 아이콘 크기 */
+	height: 24px;
+}
+
+/* ---이부분 수정--- */
+/* 상세 검색 입력칸 숨김/표시 */
+.detailed-search-container {
+	display: none; /* JavaScript로 display: flex; 로 변경될 것을 예상 */
+	/* flex-wrap: wrap; 한줄정렬이라 필요x*/
+	justify-content: center; /* 내부 요소들을 가운데 정렬 */
+	align-items: center;
+	padding: 0; /* 컨테이너 자체 패딩을 0으로 조정 input/button에 직접 패딩 적용 */
+	border: 1px solid #FFC0CB; /* 핑크색 테두리 */
+	border-radius: 5px;
+	background-color: #fff;
+	width: 100%; /* 너비 */
+	max-width: 700px; /* .search-input-container와 유사하게 최대 너비 조정 */
+	box-sizing: border-box;
+	/* margin-top: 10px; /* 필요하다면 위쪽 여백 추가 */
+}
+
+.detailed-search-container input {
+	flex: 1; /* 모든 input이 남은 공간을 균등하게 차지 */
+	min-width: 80px; /* 너무 줄어들지 않도록 최소 너비 설정 */
+	padding: 10px 15px; /* 내부 패딩 조정 */
+	border: none; /* 각 input의 테두리 제거 (컨테이너에만 테두리 적용) */
+	border-right: 1px solid #eee; /* 각 입력칸 사이에 구분선 추가 */
+	outline: none; /* 클릭 시 아웃라인 제거 */
+	font-size: 1em;
+	height: 40px; /* 모든 input의 높이를 일치시켜 정렬을 깔끔하게 */
+	box-sizing: border-box; /* 패딩이 너비에 포함되도록 */
+}
+
+/* 마지막 input의 오른쪽 테두리 제거 */
+.detailed-search-container input:last-of-type {
+	border-right: none;
+}
+
+.detailed-search-container button {
+	background-color: transparent; /* 배경색 없음 */
+	border: none;
+	padding: 10px 15px; /* 버튼 패딩 조정 */
+	cursor: pointer;
+	flex-shrink: 0; /* 버튼이 줄어들지 않도록 */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 40px; /* input과 높이 일치 */
+}
+
+.detailed-search-container button img {
+	width: 24px; /* 검색 아이콘 크기 */
+	height: 24px;
+}
+/* ---이부분 수정--- */
+
+/* 메인 콘텐츠 래퍼 (공지사항 및 실종자 리스트를 담는 컨테이너) */
+.main-content-wrapper {
+	display: flex; /* 자식 요소(섹션)를 가로로 배치 */
+	justify-content: center;
+	gap: 30px; /* 섹션들 사이 간격 */
+	padding: 30px 20px;
+	max-width: 1200px; /* 최대 너비 제한 (1440px에서 양 옆 여백 주기 위함) */
+	margin: 0 auto; /* 중앙 정렬 */
+	flex-wrap: wrap; /* 화면이 작아지면 다음 줄로 */
+}
+
+/* 공지사항 섹션 */
+.notice-section, .missing-list-section {
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	padding: 25px;
+	box-sizing: border-box;
+	flex: 1; /* 남은 공간을 균등하게 차지 */
+	min-width: 450px; /* 최소 너비 지정 */
+}
+
+.notice-section h2, .missing-list-section h2 {
+	color: #FF69B4; /* 타이틀 색상 */
+	font-size: 1.6em;
+	margin-top: 0;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.notice-section table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 15px;
+}
+
+.notice-section th, .notice-section td {
+	padding: 12px;
+	border-bottom: 1px solid #eee;
+	text-align: center;
+	font-size: 0.95em;
+}
+
+.notice-section th {
+	background-color: #f9f9f9;
+	font-weight: bold;
+	color: #555;
+}
+
+.notice-section td a {
+	color: #007bff; /* 공지사항 링크 색상 */
+}
+
+.notice-section tr:hover {
+	background-color: #f5f5f5;
+}
+
+/* 실종자 리스트 섹션 */
+.missing-cards-container {
+	display: flex;
+	flex-wrap: wrap; /* 카드들을 다음 줄로 넘기기 */
+	gap: 20px; /* 카드 사이 간격 */
+	justify-content: center; /* 카드들을 가운데 정렬 */
+	margin-top: 15px;
+}
+
+.missing-person-card {
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	overflow: hidden;
+	width: 200px; /* 카드 너비 고정 */
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	background-color: #fff;
+	transition: transform 0.2s ease-in-out; /* 호버 애니메이션 */
+}
+
+.missing-person-card:hover {
+	transform: translateY(-5px); /* 호버 시 살짝 위로 */
+}
+
+.missing-person-card a {
+	display: block; /* 링크 영역 전체로 확장 */
+	color: #333; /* 텍스트 색상 */
+	padding-bottom: 15px; /* 하단 패딩 */
+}
+
+.missing-person-card img {
+	width: 100%;
+	height: 180px; /* 이미지 높이 고정 */
+	object-fit: cover; /* 이미지가 잘리지 않게 채움 */
+	display: block; /* 이미지 아래 공백 제거 */
+}
+
+.missing-person-card .person-info {
+	padding: 10px 15px 0;
+	font-size: 0.9em;
+}
+
+.missing-person-card .person-info p {
+	margin: 5px 0; /* 정보 항목별 마진 */
+	line-height: 1.4;
+}
+
+/* 전체보기 */
+.view-all-button {
+	text-align: center;
+	margin-top: 20px;
+}
+
+.btn-view-all {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #F472B6;
+	color: white;
+	border-radius: 5px;
+	text-decoration: none;
+	transition: background-color 0.3s ease;
+}
+.btn-view-all:hover {
+	background-color: #D8578D;
+}
+
+/* 푸터 */
+footer {
+	text-align: center;
+	padding: 20px;
+	margin-top: 40px;
+	background-color: #333;
+	color: #fff;
+	font-size: 0.9em;
+}
+
+/* 미디어 쿼리 (화면 크기에 따라 레이아웃 변경) */
+@media ( max-width : 768px) {
+	.main-header .logo {
+		padding-left: 20px; /* 작은 화면에서도 좌측 정렬 유지 */
+	}
+	.main-nav ul {
+		flex-direction: column; /* 작은 화면에서 메뉴 세로 정렬 */
+		justify-content: flex-start; /* 세로 정렬 시 시작 부분에 정렬 */
+	}
+	.main-nav ul li {
+		width: 100%; /* 메뉴 항목 전체 너비 */
+		padding: 10px 0;
+	}
+	.dropdown-menu {
+		position: static; /* 드롭다운이 컨텐츠 흐름에 따라 배치 */
+		width: 100%;
+		box-shadow: none;
+	}
+	.main-content-wrapper {
+		flex-direction: column; /* 섹션들을 세로로 쌓음 */
+		align-items: center;
+	}
+	.notice-section, .missing-list-section {
+		min-width: unset; /* 최소 너비 제한 해제 */
+		width: 100%;
+		margin-bottom: 20px;
+	}
+}
+
+@media ( max-width : 480px) {
+	.main-header .logo h1 {
+		font-size: 2em;
+	}
+	.main-header .logo p {
+		font-size: 1em;
+	}
+	.search-input-container, .hidden-search-details input {
+		width: 90%;
+		flex: 1 1 100%; /* 작은 화면에서 입력칸 전체 너비 */
+	}
+}
