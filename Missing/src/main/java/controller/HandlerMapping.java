@@ -67,7 +67,14 @@ public class HandlerMapping {
 		case "missingInsert":
 		    controller = new MissingInsertController();
 		    break;
-
+		// 수정 화면 보여주기
+		case "missingUpdateView":
+            controller = new MissingUpdateViewController();
+            break;
+        // 수정 처리
+        case "missingUpdate":
+            controller = new MissingUpdateController();
+            break;
 		case "missingDelete":
 			controller = new MissingDeleteController();
 			break;
