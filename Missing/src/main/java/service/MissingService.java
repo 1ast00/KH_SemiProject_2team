@@ -65,4 +65,8 @@ public class MissingService {
 	public MissingPersonDTO getMissingPersonBySerialNum(String serialNum) {
 		return mapper.selectMissingPersonBySerialNum(serialNum);
 	}
+
+	public int updateMissingPerson(MissingPersonDTO person) {
+		return mapper.updateMissingPerson(person); 
+	}
 }
