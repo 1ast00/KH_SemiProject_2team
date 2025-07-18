@@ -18,9 +18,12 @@ public interface MissingMapper {
 	int deleteMissingPerson(String missingSerialNum);
 
 	List<MissingPersonDTO> selectMissingListMain();
-	
-	// 조회 
+
+	// 조회
 	MissingPersonDTO selectMissingPersonBySerialNum(String serialNum);
 
 	MissingPersonDTO selectMissingById(String serialNum);
+
+	// 업데이트
+	int updateMissingPerson(MissingPersonDTO person);
 }

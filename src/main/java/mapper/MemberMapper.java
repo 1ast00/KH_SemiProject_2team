@@ -17,4 +17,6 @@ public interface MemberMapper {
     int countByIdEmail(MemberDTO dto);
 
     int updatePassword(MemberDTO dto);
+
+	int updateMemberInfo(MemberDTO member);
 }

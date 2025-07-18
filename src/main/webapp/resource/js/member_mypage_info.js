@@ -6,6 +6,8 @@ window.onload = () => {
 	const editButton = document.querySelector('.btn-primary');
 	// input
 	const inputs = document.querySelectorAll('.detail-value');
+	// 식별자
+	const memberSerialNum = document.getElementById('memberSerialNum').value;
 
 	let isEditing = false;
 
@@ -21,7 +23,34 @@ window.onload = () => {
 			editButton.textContent = '수정'; // 저장하면 다시 수정으로
 			isEditing = false;
 
-			// fetch(memberUpdate.do?)
+			// JSON 데이터 생성
+			const memberData = {
+				memberSerialNum: memberSerialNum,
+				member_name: inputs[0].value,      // 이름
+				member_phone: inputs[1].value,     // 전화번호
+				member_email: inputs[2].value      // 이메일
+			};
+
+			fetch("memberUpdate.do", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(memberData)
+			})
+				.then(response => response.json())
+				.then(data => {
+					console.log(data);
+					if (data) { 
+						alert('수정이 완료되었습니다.');
+					} else {
+						alert('수정에 실패했습니다: ' + data.message);
+					}
+				})
+				.catch(error => {
+					console.error('Error:', error);
+					alert('수정 중 오류가 발생했습니다.');
+				});
 		}
 	};
 

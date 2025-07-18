@@ -19,7 +19,8 @@
                         <div class="card-image">
                             <c:choose>
                                 <c:when test="${not empty person.image}">
-                                    <img src="${pageContext.request.contextPath}/uploads/${person.image}" alt="${person.name} 이미지">
+                                	<!-- Tomcat 서버 설정에서 이미지 저장위해 만든 폴더를 지정하고 사용할 URL경로를 /uploads로 지정했음 -->
+                                    <img src="/uploads/${person.image}" alt="${person.name} 이미지">
                                 </c:when>
                                 <c:otherwise>
                                     <img src="${pageContext.request.contextPath}/resource/images/default_avatar.png" alt="기본 이미지">

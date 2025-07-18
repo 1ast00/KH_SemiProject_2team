@@ -35,17 +35,21 @@ public class MissingService {
         return mapper.selectMissingCount();
     }
 
+    // 추가
     public int insertMissingPerson(MissingPersonDTO person) {
         return mapper.insertMissingPerson(person);
     }
     
+    // 관리자 정보
     public String getAdminSerialNumByMember(String memberSerialNum) {
         return mapper.selectAdminSerialNumByMember(memberSerialNum);
     }
 
     // 나이 계산 로직 
     public String calculateAge(String birthDateStr, String standardDateStr) {
+    	System.out.println("나이 계산");
         if (birthDateStr == null || standardDateStr == null) {
+        	System.out.println("null - 계산 실패");
             return "계산 불가";
         }
         try {
@@ -53,11 +57,12 @@ public class MissingService {
             LocalDate standardDate = LocalDate.parse(standardDateStr);
             return String.valueOf(Period.between(birthDate, standardDate).getYears());
         } catch (DateTimeParseException e) {
-            System.err.println("나이 계산 중 날짜 포맷 오류 발생: " + e.getMessage());
+            System.out.println("나이 계산 중 날짜 포맷 오류 발생: " + e.getMessage());
             return "계산 불가";
         }
     }
     
+    // 삭제
     public int deleteMissingPerson(String missingSerialNum) {
         return mapper.deleteMissingPerson(missingSerialNum);
     }
@@ -67,11 +72,19 @@ public class MissingService {
         return mapper.selectMissingListMain();
     }
     
+    // 실종자 식별자
     public MissingPersonDTO getMissingPersonBySerialNum(String serialNum) {
+    	System.out.println("MissingService - getMissingPersonBySerialNum(serialNum): " + serialNum);
 		return mapper.selectMissingPersonBySerialNum(serialNum);
 	}
     
+    // 실종자 식별자
     public MissingPersonDTO selectMissingById(String serialNum) {
         return mapper.selectMissingById(serialNum);
     }
+    
+    // 수정
+    public int updateMissingPerson(MissingPersonDTO person) {
+		return mapper.updateMissingPerson(person); 
+	}
 }

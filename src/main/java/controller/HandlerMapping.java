@@ -46,6 +46,9 @@ public class HandlerMapping {
 		case "memberMypageInfoView":
 			controller = new MemberMypageInfoView();
 			break;
+		case "memberUpdate":
+			controller = new MemberUpdateController();
+			break;
 		case "checkMemberId":
 			controller = new CheckMemberIdController();
 			break;
@@ -82,6 +85,12 @@ public class HandlerMapping {
 		case "missingDelete":
 			controller = new MissingDeleteController();
 			break;
+		case "missingUpdateView":
+            controller = new MissingUpdateViewController();
+            break;
+		case "missingUpdate":
+            controller = new MissingUpdateController();
+            break;
 		case "witnessInsertView":
 			controller = new WitnessInsertViewController();
 			break;	

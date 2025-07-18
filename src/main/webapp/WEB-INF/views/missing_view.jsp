@@ -18,9 +18,8 @@
 		<div class="image-box">
 			<c:choose>
 				<c:when test="${not empty missingPerson.image}">
-					<!-- 이미지는 'contextPath/uploads/파일명' 형태로 접근 / 없을 경우 대체 이미지 -->
-					<img src="${pageContext.request.contextPath}/uploads/${missingPerson.image}"  alt="${missingPerson.name}" 
-    							onerror="this.onerror=null; this.src='${pageContext.request.contextPath}/resource/img/default.jpg';">
+					<!-- Tomcat 서버 설정에서 이미지 저장위해 만든 폴더를 지정하고 사용할 URL경로를 /uploads로 지정했음 -->
+					<img src="/uploads/${missingPerson.image}" alt="실종자 이미지">
 				</c:when>
 				<c:otherwise>
 					<p><strong>이미지 없음</strong></p>
@@ -50,10 +49,25 @@
 
 	<div class="button-group">
 		<a href="missingInsertView.do">새로 접수하기</a> 
-		<a href="#">제보하기</a>
+		<!-- 목격자 제보 페이지로 연결 -->
+		<a href="witnessInsert.do">제보하기</a>
 		<form action="missingList.do" method="get" style="display:inline;">
 			<button type="submit">실종자 목록 보기</button>
 		</form>
+		<!-- 수정하기 추가 -->
+		<c:if test="${sessionScope.loginRole eq 'admin' or (sessionScope.loginRole eq 'member' and sessionScope.loginSerialNum eq missingPerson.memberSerialNum)}">
+    		<form action="missingUpdateView.do" method="get" style="display:inline;">
+        		<input type="hidden" name="missingSerialNum" value="${missingPerson.missingSerialNum}" />
+        		<button type="submit">수정하기</button>
+    		</form>
+		</c:if>
 	</div>
+		<!-- 삭제 버튼 옮겨옴 -->
+		<c:if test="${sessionScope.loginRole eq 'admin' or (sessionScope.loginRole eq 'member' and sessionScope.loginSerialNum eq missingPerson.memberSerialNum)}">
+			<form action="${pageContext.request.contextPath}/missingDelete.do" method="post" style="display:inline;">
+				<input type="hidden" name="missingSerialNum" value="${missingPerson.missingSerialNum}" />
+				<button type="submit" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button>
+			</form>
+		</c:if>
 </body>
 </html>

@@ -40,10 +40,25 @@
 	</insert>
 
 	<select id="selectMissingList" resultMap="missing">
-		SELECT * FROM missing_info
-		ORDER BY missing_serialNum DESC
+		SELECT * FROM (
+			SELECT ROWNUM AS rnum, m.* FROM (
+				SELECT 
+					missing_serialNum,
+					member_serialNum,
+					admin_serialNum,
+					missing_name,
+					missing_gender,
+					TO_CHAR(TO_DATE(missing_birth, 'YYYYMMDD'), 'YYYY-MM-DD') as missing_birth,
+					missing_etc,
+					missing_place,
+					TO_CHAR(missing_date, 'YYYY-MM-DD') as missing_date,
+					missing_img
+				FROM missing_info ORDER BY missing_serialNum DESC
+			) m
+		) WHERE rnum BETWEEN #{startRow} AND #{endRow}
 	</select>
 
+	<!-- 페이징 -->
 	<select id="selectMissingCount" resultType="int">
 		SELECT COUNT(*) FROM missing_info
 	</select>
@@ -62,12 +77,42 @@
         SELECT * FROM missing_info WHERE missing_serialNum = #{serialNum}
     </select>
     
+    <!-- main_list -->
     <select id="selectMissingListMain" resultMap="missing">
 		SELECT * FROM missing_info
 		ORDER BY missing_serialNum DESC
 	</select>
 	
+	<!-- view -->
 	<select id="selectMissingPersonBySerialNum" parameterType="String" resultType="dto.MissingPersonDTO">
-    	SELECT * FROM missing_info WHERE missing_serialNum = #{serialNum}
+    	SELECT 
+	        missing_serialNum,
+	        member_serialNum,
+	        admin_serialNum,
+	        missing_name,
+	        missing_gender,
+	        TO_CHAR(TO_DATE(missing_birth, 'YYYYMMDD'), 'YYYY-MM-DD') as missing_birth,
+	        missing_etc,
+	        missing_place,
+	        TO_CHAR(missing_date, 'YYYY-MM-DD') as missing_date,
+	        missing_img
+	    FROM missing_info 
+	    WHERE missing_serialNum = #{serialNum}
 	</select>
+	
+	<!-- 수정 -->
+	<update id="updateMissingPerson" parameterType="dto.MissingPersonDTO">
+    UPDATE missing_info
+       SET missing_name = #{name},
+           missing_gender = #{gender},
+           missing_birth = TO_NUMBER(REPLACE(#{birth}, '-', '')),
+           missing_etc = #{etc},
+           missing_place = #{place},
+           missing_date = TO_DATE(#{missingDate}, 'YYYY-MM-DD')
+           <!-- 새 이미지파일이 업로드될때만 MISSING_IMG 컬럼 업데이트 -->
+           <if test="image != null">
+           , missing_img = #{image}
+           </if>
+     WHERE missing_serialNum = #{missingSerialNum}
+	</update>
 </mapper>
