@@ -17,7 +17,8 @@ import view.ModelAndView;
 
 public class MissingInsertController implements Controller {
 
-    private static final String UPLOAD_DIR = "uploads";
+	// 이미지파일 저장할 폴더 새로 만들고 해당 경로로 설정
+    private static final String UPLOAD_DIR = "C:/dasibom_uploads";
 
     @Override
     public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -78,6 +79,7 @@ public class MissingInsertController implements Controller {
         return person;
     }
 
+    // 이미지 저장
     private String saveImageFile(HttpServletRequest request) throws IOException, ServletException {
         Part part = request.getPart("missingImg");
         if (part != null && part.getSize() > 0) {
@@ -85,11 +87,14 @@ public class MissingInsertController implements Controller {
             if (originalFileName != null && !originalFileName.isEmpty()) {
                 String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
                 String uniqueName = UUID.randomUUID().toString() + ext;
-                String uploadPath = request.getServletContext().getRealPath("") + File.separator + UPLOAD_DIR;
+//     수정 전 :  String uploadPath = request.getServletContext().getRealPath("") + File.separator + UPLOAD_DIR;
+                String uploadPath = UPLOAD_DIR; // 위에서 지정한 절대경로 사용
+                
                 File dir = new File(uploadPath);
-                if (!dir.exists()) dir.mkdirs();
+                if (!dir.exists()) dir.mkdirs(); // 폴더가 없으면 생성
+                
                 part.write(uploadPath + File.separator + uniqueName);
-                return uniqueName;
+                return uniqueName; // DB에는 파일 이름만 저장(엄청 길게 생성됐던 그 코드같은거)
             }
         }
         return null;
