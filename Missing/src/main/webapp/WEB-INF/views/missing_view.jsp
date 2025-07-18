@@ -18,8 +18,8 @@
 		<div class="image-box">
 			<c:choose>
 				<c:when test="${not empty missingPerson.image}">
-					<!-- 이미지는 'contextPath/uploads/파일명' 형태로 접근 -->
-					<img src="${pageContext.request.contextPath}/uploads/${missingPerson.image}" alt="실종자 이미지">
+					<!-- Tomcat 서버 설정에서 이미지 저장위해 만든 폴더를 지정하고 사용할 URL경로를 /uploads로 지정했음 -->
+					<img src="/uploads/${missingPerson.image}" alt="실종자 이미지">
 				</c:when>
 				<c:otherwise>
 					<p><strong>이미지 없음</strong></p>
