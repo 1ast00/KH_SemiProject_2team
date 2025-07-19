@@ -50,38 +50,29 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td><a href="#">공지사항 1</a></td>
-						<td>2020-01-01</td>
-						<td>30</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td><a href="#">공지사항 2</a></td>
-						<td>2020-01-02</td>
-						<td>31</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td><a href="#">공지사항 3</a></td>
-						<td>2020-01-03</td>
-						<td>32</td>
-					</tr>
-					<tr>
-						<td>4</td>
-						<td><a href="#">공지사항 4</a></td>
-						<td>2020-01-04</td>
-						<td>33</td>
-					</tr>
-					<tr>
-						<td>5</td>
-						<td><a href="#">공지사항 5</a></td>
-						<td>2020-01-05</td>
-						<td>34</td>
-					</tr>
+                    <c:choose>
+                        <c:when test="${not empty latestNoticeList}">
+                            <c:forEach var="notice" items="${latestNoticeList}" varStatus="status">
+                                <tr>
+                                    <td>${notice.num}</td>
+                                    <td><a href="${pageContext.request.contextPath}/noticeView.do?num=${notice.num}">${notice.title}</a></td>
+                                    <td><fmt:formatDate value="${notice.writeDate}" pattern="yyyy.MM.dd"/></td> <%-- 날짜 포맷팅 --%>
+                                    <td>${notice.views}</td>
+                                </tr>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <tr>
+                                <td colspan="4" class="no-results">등록된 최신 공지사항이 없습니다.</td>
+                            </tr>
+                        </c:otherwise>
+                    </c:choose>
 				</tbody>
 			</table>
+            <%-- 공지사항 전체보기 버튼 추가 --%>
+            <div class="view-all-button">
+                <a href="${pageContext.request.contextPath}/noticeList.do" class="btn-view-all">전체보기</a>
+            </div>
 		</section>
 
 <section class="missing-list-section">
