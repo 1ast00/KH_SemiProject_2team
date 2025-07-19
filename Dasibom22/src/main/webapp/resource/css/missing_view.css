@@ -1,0 +1,131 @@
+@charset "UTF-8";
+
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #fff;
+	text-align: center;
+}
+
+h1 {
+	margin-top: 30px;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.container {
+	width: 800px;
+	margin: 30px auto;
+	padding: 0px 0px 0px 350px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	gap: 30px;
+	text-align: left;
+}
+
+.image-box img {
+	width: 250px;
+	height: auto;
+	border: 1px solid #ccc;
+	box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.info-box {
+	font-size: 16px;
+	line-height: 1.5;
+	flex-grow: 1;
+	margin-top: -10px;
+}
+
+.info-box p {
+	margin: 5px 0;
+}
+
+.caption {
+	margin-top: 20px;
+	font-size: 14px;
+	color: #555;
+}
+
+.button-group a,
+.button-group form button {
+	background-color: #f9a8d4;
+	color: #fff;
+	padding: 10px 20px;
+	border: none;
+	margin: 0 10px;
+	border-radius: 5px;
+	text-decoration: none;
+	cursor: pointer;
+	font-weight: bold;
+	min-width: 120px;
+	font-size: 16px;
+	display: inline-block;
+	text-align: center;
+	line-height: 1.4;
+	box-sizing: border-box;
+	height: 42px;
+	vertical-align: middle;
+}
+
+.button-group a:hover,
+.button-group form button:hover {
+	background-color: #f472b6;
+}
+
+.btn-edit {
+	background-color: #60a5fa;
+	color: #fff;
+	padding: 5px 10px;
+	font-size: 14px;
+	min-width: 100px;
+	height: 36px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: bold;
+	text-decoration: none;
+	display: inline-block;
+	box-sizing: border-box;
+}
+.btn-edit:hover {
+	background-color: #3b82f6;
+}
+
+.btn-delete {
+	background-color: #ef4444;
+	color: #fff;
+	padding: 5px 10px;
+	font-size: 14px;
+	min-width: 100px;
+	height: 36px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: bold;
+	text-decoration: none;
+	display: inline-block;
+	box-sizing: border-box;
+}
+.btn-delete:hover {
+	background-color: #dc2626;
+}
+
+.button-group {
+	margin-top: 30px;
+}
+
+.button-group form {
+	display: inline;
+}
+
+.button-admin-actions {
+	margin-top: 10px;
+	text-align: left;
+}
+
+.button-admin-actions form {
+	display: inline;
+}
